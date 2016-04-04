@@ -18,6 +18,7 @@
 include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
 
+
 sec_session_start();
 ?>
 <!DOCTYPE html>
@@ -32,36 +33,70 @@ sec_session_start();
     <body>
         <?php if (login_check($mysqli) == true) : ?>
         <p>Welcome <?php echo htmlentities($_SESSION['username']); ?>!</p>
-            <p>
+        <p>
         	
         
        	   <div class="container">
 
             <ul id="nav">
-                <li><a href="http://www.script-tutorials.com/">Home</a></li>
-                <li><a class="hsubs" href="#">Calendario Academico</a></li>
-                <li><a class="hsubs" href="#">Becas</a></li>
-                <li><a class="hsubs" href="#">Noticias FURC</a></li>
-                <li><a href="#">Carnet FURC</a></li>
-                <li><a href="#">Informacion Unrc</a></li>
-                <li><a href="#">Contactos</a></li>
-		<li><a href="#">Espacio Independiente</a></li>
-		<li><a href="#">Mapa</a></li>
-		<li><a href="#">Eventos</a>
-			<ul class="subs">
-                        <li><a href="#">Charlas</a></li>
-                        <li><a href="#">Viajes</a></li>
-                        <li><a href="#">Congresos</a></li>
-                    </ul>
-		</li>
-		<li><a href="#">Agenda Cultural</a></li>
-            </ul>
-	<h1>Cuerpo del menu</h1>
+                <li><a href="/protected_page.php?campo=">Home</a></li>
+                <li><a class="hsubs" href="/protected_page.php?campo=actCulturales">ActividadesCulturales</a></li>
+                <li><a class="hsubs" href="/protected_page.php?campo=becas">Becas</a></li>
+                <li><a class="hsubs" href="/protected_page.php?campo=actividades">AvtividadesXFacultad</a></li>
+                <li><a href="/protected_page.php?campo=carnets">CarnetFURC</a></li>
+                <li><a href="/protected_page.php?campo=categorias">Categorias</a></li>
+                <li><a href="/protected_page.php?campo=contactateMails">Mails</a></li>
+								<li><a href="/protected_page.php?campo=espacioRedes">EspacioIndep..Redes</a></li>
+								<li><a href="/protected_page.php?campo=locales">LocalesAdheridos</a></li>
+								<li><a href="#">Eventos</a>
+								<ul class="subs">
+		                <li><a href="/protected_page.php?campo=Charalas">Charlas</a></li>
+		                <li><a href="/protected_page.php?campo=viajes">Viajes</a></li>
+		                <li><a href="/protected_page.php?campo=congresos">Congresos</a></li>
+                 </ul>
+								<li><a href="/protected_page.php?campo=Agendacultural">Agenda Cultural</a></li>
+							<div id="lavalamp"></div>
+            	<h1><?php $v1 = $_GET['campo']; 
+								if($v1=="becas"){
+									echo '<iframe src="http://127.0.0.1/basededatos/obtener.php?tabla=becas&version=0"name="xxxx" width="100%" height="1500" scrolling="Auto" frameborder="0" id="xxxx">';
+								};
+								if($v1=="actCulturales"){
+									echo '<iframe src="http://127.0.0.1/basededatos/obtener.php?tabla=actCulturales&version=0"name="xxxx" width="100%" height="1500" scrolling="Auto" frameborder="0" id="xxxx">';
+								};
+								if($v1=="contactos"){
+									echo '<iframe src="http://127.0.0.1/basededatos/obtener.php?tabla=unrcContactos&version=0"name="xxxx" width="100%" height="1500" scrolling="Auto" frameborder="0" id="xxxx">';
+								};
+								if($v1=="actividades"){
+									echo '<iframe src="http://127.0.0.1/basededatos/obtener.php?tabla=actividades&version=0"name="xxxx" width="100%" height="1500" scrolling="Auto" frameborder="0" id="xxxx">';
+								};
+								if($v1=="carnets"){
+									echo '<iframe src="http://127.0.0.1/basededatos/obtener.php?tabla=carnets&version=0"name="xxxx" width="100%" height="1500" scrolling="Auto" frameborder="0" id="xxxx">';
+								};
+								if($v1=="categorias"){
+									echo '<iframe src="http://127.0.0.1/basededatos/obtener.php?tabla=categorias&version=0"name="xxxx" width="100%" height="1500" scrolling="Auto" frameborder="0" id="xxxx">';
+								};
+								if($v1=="contactateMails"){
+									echo '<iframe src="http://127.0.0.1/basededatos/obtener.php?tabla=contactateMails&version=0"name="xxxx" width="100%" height="1500" scrolling="Auto" frameborder="0" id="xxxx">';
+								};
+								if($v1=="espacioRedes"){
+									echo '<iframe src="http://127.0.0.1/basededatos/obtener.php?tabla=espacioRedes&version=0"name="xxxx" width="100%" height="150" scrolling="Auto" frameborder="0" id="xxxx">';
+								};
+								if($v1=="mapa"){
+									echo '<iframe src="http://127.0.0.1/basededatos/obtener.php?tabla=mapa&version=0"name="xxxx" width="100%" height="1500" scrolling="Auto" frameborder="0" id="xxxx">';
+								};
+								if($v1=="locales"){
+									echo '<iframe src="http://127.0.0.1/basededatos/obtener.php?tabla=localesAdheridos&version=0"name="xxxx" width="100%" height="300" scrolling="Auto" frameborder="0" id="xxxx">';
+								};
+							 ?>
+							</h1>
+	    
+
+	
         </div>
 	
     </p>
 	<div>
-            </p>
+           
             <p><h2>Return to</h2> <a href="index.php"><h2>login page</h2></a></p>
         <?php else : ?>
             <p>

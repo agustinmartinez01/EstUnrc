@@ -110,36 +110,26 @@
 }
 
 #nav li:nth-of-type(1):hover ~ #lavalamp {
-    left: 1px;
+    left: 13px;
 }
 #nav li:nth-of-type(2):hover ~ #lavalamp {
     left: 90px;
 }
 #nav li:nth-of-type(3):hover ~ #lavalamp {
-    left: 190px;
+    left: 170px;
 }
 #nav li:nth-of-type(4):hover ~ #lavalamp {
     left: 250px;
 }
 #nav li:nth-of-type(5):hover ~ #lavalamp {
-    left: 350px;
+    left: 330px;
 }
 #nav li:nth-of-type(6):hover ~ #lavalamp {
-    left: 450px;
+    left: 410px;
 }
 #nav li:nth-of-type(7):hover ~ #lavalamp {
-    left: 540px;
+    left: 490px;
 }
 #nav li:nth-of-type(8):hover ~ #lavalamp {
-    left: 640px;
+    left: 565px;
 }
-#nav li:nth-of-type(9):hover ~ #lavalamp {
-    left: 730px;
-}
-#nav li:nth-of-type(10):hover ~ #lavalamp {
-    left: 785px;
-}
-#nav li:nth-of-type(11):hover ~ #lavalamp {
-    left: 870px;
-}
-

@@ -217,12 +217,8 @@ function esc_url($url) {
     }
 }
 
-function becas($campo, $mysqli1) {
-    $ConsultaMySql= $mysqli1->query("SELECT * from becas");
-	if($columna = mysqli_fetch_array($ConsultaMySql))
-	{
-	    return true;
-}  
+function calendarioacadem($email, $mysqli1) {
+    // Using prepared statements means that SQL injection is not possible. 
     
 }
 

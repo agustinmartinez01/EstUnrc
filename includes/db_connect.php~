@@ -20,13 +20,13 @@
 include_once 'psl-config.php';   // Needed because functions.php is not included
 
 $mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
-//$mysqli1 = new mysqli(HOST, USER, PASSWORD, DATABASE1);
+$mysqli1 = new mysqli(HOST, USER, PASSWORD, DATABASE1);
 if ($mysqli->connect_error) {
     header("Location: ../error.php?err=Unable to connect to MySQL");
     exit();
 }
-//if ($mysqli1->connect_error) {
-//  header("Location: ../error.php?err=Unable to connect to MySQL");
-//    exit();
-//}
+if ($mysqli1->connect_error) {
+    header("Location: ../error.php?err=Unable to connect to MySQL");
+    exit();
+}
 
