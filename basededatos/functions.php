@@ -5,7 +5,7 @@
  * almacenadas en la base de datos
  */
 require 'Database.php';
-
+include_once 'mysql_login.php';
 class functions
 {
     function __construct()
@@ -38,6 +38,8 @@ class functions
 
         
     }
+
+		
     
 
     public static function getVersion($table_name)
