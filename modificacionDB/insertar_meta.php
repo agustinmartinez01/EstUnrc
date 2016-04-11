@@ -17,7 +17,7 @@
  */
 include_once '../includes/db_connect.php';
 include_once '../includes/functions.php';
-require 'obtener_metas.php';
+include_once 'obtener_metas.php';
 
 sec_session_start();
 ?>

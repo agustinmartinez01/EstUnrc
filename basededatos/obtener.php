@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 					print '<input type="hidden" name="cantcol" value="'.$cantcol.'">';
 					print '<input name="Agregar" type="submit" value="Agregar">';
 					print '</form>';
-					print'<form action="/modificacionDB/borrar_metas.php?table_name='.$table_name.'" method="post" >';
+					print'<form action="/modificacionDB/borrar_meta.php?table_name='.$table_name.'" method="post" >';
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
 					print '<input name="Eliminar" type="submit" value="Eliminar">';
 					print '<label for="id"> ID : </label>';
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 					print '<input type="hidden" name="cantcol" value="'.$cantcol.'">';
 					print '<input name="Agregar" type="submit" value="Agregar">';
 					print '</form>';
-					print'<form action="/modificacionDB/borrar_metas.php?table_name='.$table_name.'" method="post" >';
+					print'<form action="/modificacionDB/borrar_meta.php?table_name='.$table_name.'" method="post" >';
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
 					print '<input name="Eliminar" type="submit" value="Eliminar">';
 					print '</form>';
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 					print '<input type="hidden" name="cantcol" value="'.$cantcol.'">';
 					print '<input name="Agregar" type="submit" value="Agregar">';
 					print '</form>';
-					print'<form action="/modificacionDB/borrar_metas.php?table_name='.$table_name.'" method="post" >';
+					print'<form action="/modificacionDB/borrar_meta.php?table_name='.$table_name.'" method="post" >';
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
 					print '<input name="Eliminar" type="submit" value="Eliminar">';
 					print '</form>';

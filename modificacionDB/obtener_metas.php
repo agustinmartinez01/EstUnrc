@@ -26,7 +26,7 @@ function input_actCulturales()
 
 function input_becas()
 {
-    $mode = array("nombre", "categorias", "informacion", "img_path");
+    $mode = array("nombre", "categoria", "informacion", "img_path");
     print'<form action="/modificacionDB/insertarDB.php" method="post" >';
       for ($i = 0; $i <= 3; $i++) {
               print '<label><h6 style="color:black">';
@@ -143,7 +143,7 @@ function input_espacioRedes(){
 }
 
 function input_localesAdheridos(){
-	$mode = array("nombre","dereccion","rubro","descuento");
+	$mode = array("nombre","direccion","rubro","descuento");
 	print'<form action="/modificacionDB/insertarDB.php" method="post" >';
       for ($i = 0; $i <= 3; $i++) {
               print '<label><h6 style="color:black">';
