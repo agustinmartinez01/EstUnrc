@@ -4,6 +4,13 @@
  */
 
 require 'functions.php';
+
+include_once '../includes/functions.php';
+
+
+
+sec_session_start();
+
 //require 'selectAllJSON.php';
 $table_name = $_GET['tabla'];
 $version = $_GET['version'];
@@ -22,76 +29,71 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if ($regs) {
 
         $datos=$regs;
+				$shop = $datos;
+				$shop1=$regs;
+				if (count($shop) > 0){
+					print "<table>
+					<thead>
+		  			<tr>
+		    			<th>";print implode('</th><th>', array_keys(current($shop)));print"</th>
+		  			</tr>
+					</thead>
+					<tbody>
+					"; foreach ($shop as $row): array_map('htmlentities', $row);$cantcol=count($row);
+					  print "<tr>
+					    <td>"; print implode('</td><td>', $row);print"</td>
+					  </tr>";
+					endforeach;
+					print"</tbody>
+					</table>";
+					$mode = current($shop1);
+					$mode = array_keys($mode);
+					print'<form action="/modificacionDB/insertar_meta.php" method="post" >';
+					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
+					print '<input type="hidden" name="cantcol" value="'.$cantcol.'">';
+					print '<input name="Agregar" type="submit" value="Agregar">';
+					print '</form>';
+					print'<form action="/modificacionDB/borrar_metas.php?table_name='.$table_name.'" method="post" >';
+					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
+					print '<input name="Eliminar" type="submit" value="Eliminar">';
+					print '<label for="id"> ID : </label>';
+					print '<input type="text" name="id" value="" maxlength="4" size="4"">';
+					print '</form>';
+					print'<form action="/modificacionDB/actualizar_metas.php" method="post" >';
+					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
+					print '<input name="Modificar" type="submit" value="Modificar">';
+					print '<label for="id"> ID : </label>';
+					print '<input type="text" name="id" value="" maxlength="4" size="4"">';
+					print '</form>';	 	
+			} else {
+						print'<form action="/modificacionDB/insertar_meta.php" method="post" >';
+					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
+					print '<input type="hidden" name="cantcol" value="'.$cantcol.'">';
+					print '<input name="Agregar" type="submit" value="Agregar">';
+					print '</form>';
+					print'<form action="/modificacionDB/borrar_metas.php?table_name='.$table_name.'" method="post" >';
+					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
+					print '<input name="Eliminar" type="submit" value="Eliminar">';
+					print '</form>';
+					print'<form action="/modificacionDB/actualizar_metas.php" method="post" >';
+					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
+					print '<input name="Modificar" type="submit" value="Modificar">';
+					print '</form>';
+				}//end else
+		}else{
+					print'<form action="/modificacionDB/insertar_meta.php" method="post" >';
+					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
+					print '<input type="hidden" name="cantcol" value="'.$cantcol.'">';
+					print '<input name="Agregar" type="submit" value="Agregar">';
+					print '</form>';
+					print'<form action="/modificacionDB/borrar_metas.php?table_name='.$table_name.'" method="post" >';
+					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
+					print '<input name="Eliminar" type="submit" value="Eliminar">';
+					print '</form>';
+					print'<form action="/modificacionDB/actualizar_metas.php" method="post" >';
+					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
+					print '<input name="Modificar" type="submit" value="Modificar">';
+					print '</form>';
+				}//end else
 
-        //print json_encode($datos);
-	$shop = $datos;
-	$shop1=$regs;
-	if (count($shop) > 0){
-
-	
-
-	print "<table>
-  			<thead>
-    			<tr>
-      			<th>";print implode('</th><th>', array_keys(current($shop)));print"</th>
-    			</tr>
-			  </thead>
-			  <tbody>
-			"; foreach ($shop as $row): array_map('htmlentities', $row);$cantcol=count($row);
-			    print "<tr>
-			      <td>"; print implode('</td><td>', $row);print"</td>
-			    </tr>";
-			endforeach;
-			  print"</tbody>
-			</table>"
-			;
-	}	
-
-
-	
-
-	//$aux = $shop1;
-	$mode = current($shop1);
-	$mode = array_keys($mode);
-	print '<form action="includes/process_login.php" method="post" name="login_form">';
-	for ($i = 0; $i <= $cantcol-1; $i++) {
-		print '<label><h6 style="color:black">';
-		print $mode[$i];
-		print '</h6></label>' ;
-		print '<p align="left">';
-		print '<label for=';
-		print $mode[$i];
-		print'></label>';
-		print '<input type="text" name=';
-		print ($mode[$i]);print "></p>";
-		if($i==0){ 
-		print '<p align="left">
-		    <input type="button" 
-		           value="Eliminar"" />
-		</p> '; 
-		print '<p align="left">
-		    <input type="button" 
-		           value="Modificar"" />
-		</p> ';}
-				   
-    		//echo "<input type='text' name=''>";
-		}
-		print '<p align="center">
-		    <input type="button" 
-		           value="Agregar"" />
-		</p> ';
-			
-
-		
-		print "</p> 
-        </form>";	 	
-
-
-
-    } else {
-        print json_encode(array(
-            "estado" => 2,
-            "mensaje" => "Error o resultado vacio"
-        ));
-    }
 }

@@ -4,10 +4,10 @@
 }
 body {
     font:10px/1.3 Arial,sans-serif;
-    background-color:#0099CC;
+    background-color:#120A2A;
 }
 iframe{
-	background-color:#00FF99;
+	background-color:#120A2A;
 }
 header {
     background-color:#212121;

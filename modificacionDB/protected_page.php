@@ -15,8 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-include_once 'includes/db_connect.php';
-include_once 'includes/functions.php';
+include_once '../includes/db_connect.php';
+include_once '../includes/functions.php';
 
 
 sec_session_start();
@@ -43,30 +43,21 @@ sec_session_start();
             <ul id="nav">
                 <li><a href="/protected_page.php?campo=Home">Home</a></li>
                 <li><a class="hsubs" href="protected_page.php?campo=actCulturales">ActividadesCulturales</a></li>
-                <li><a class="hsubs" href="protected_page.php?campo=becas">Becas   </a></li>
+                <li><a class="hsubs" href="protected_page.php?campo=becas">Becas</a></li>
                 <li><a class="hsubs" href="protected_page.php?campo=actividades">AvtividadesXFacultad</a></li>
                 <li><a href="protected_page.php?campo=carnets">CarnetFURC</a></li>
                 <li><a href="protected_page.php?campo=categorias">Categorias</a></li>
-                <li><a href="protected_page.php?campo=contactateMails">Mails  </a></li>
+                <li><a href="protected_page.php?campo=contactateMails">Mails</a></li>
 								<li><a href="protected_page.php?campo=espacioRedes">EspacioIndep..Redes</a></li>
 								<li><a href="protected_page.php?campo=localesAdheridos">LocalesAdheridos</a></li>
-                <li><a href="protected_page.php?campo=">Más    </a>
-                  <ul class="subs">
-                        <li><a href="protected_page.php?campo=calendarioAcademicos">CalendarioAcademico</a></li>
-                        <li><a href="protected_page.php?campo=noticias">Noticias</a></li>
-                        <li><a href="protected_page.php?campo=contactateconNosotros">contactNosotros</a></li>
-                        <li><a href="protected_page.php?campo=mapas">Mapa</a></li>
-                    </ul>
-                </li>
+								<li><a href="protected_page.php?campo=actividades">Actividades</a></li>
 								
 							<div id="lavalamp"></div>
 		       
             	<div><?php $v1 = $_GET['campo']; 
                     if ($v1!="Home"){
 								echo "<iframe src='basededatos/obtener.php?tabla={$v1}&version=0'name='xxxx' width='100%' height='500' scrolling='Auto' frameborder='0' id='xxxx'>";
-								}else{
-                  echo "<iframe src='https://lh3.googleusercontent.com/-kioqQVxubo4/AAAAAAAAAAI/AAAAAAAAABs/8NpDR_yuXd8/photo.jpg' marginwidth='100' name='xxxx' width='100%' height='600' scrolling='Auto' frameborder='0' id='xxxx'>";
-                }?>
+								}?>
 							</div>
 	    
 
@@ -80,7 +71,7 @@ sec_session_start();
             
         <?php else : ?>
             <p>
-                <span class="error">You are not authorized to access this page.</span> Please <a href="index.php">login</a>.
+                <span class="error">You are not authorized to access this page.</span> Please <a href="/index.php">login</a>.
             </p>
         <?php endif; ?>
 	</div>

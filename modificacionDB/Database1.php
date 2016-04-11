@@ -7,7 +7,7 @@
 require_once '../basededatos/mysql_login.php';
 
 
-class Database
+class Database1
 {
 
     /**

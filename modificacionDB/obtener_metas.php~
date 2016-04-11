@@ -1,0 +1,26 @@
+<?php
+/**
+ * Obtiene todas las metas de la base de datos
+ */
+
+require '../basededatos//obtenr.php';
+$table=$_POST[$table_name];
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+	
+	//obtener atributos de la tabla $table_name
+	if ($_POST[Agregar]) {
+		$id=$_POST[$id];
+		$atributo1=$_POST[$atributo1];
+		//...
+	}
+	if ($_POST[Eliminar]) { 
+		$id=$_POST[$id];
+	}
+	if ($_POST[Modificar]) { 
+		$id=$_POST[$id];
+		$atributo1=$_POST[$atributo1];
+		//...
+	}
+    
+}
+
