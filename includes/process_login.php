@@ -28,7 +28,7 @@ if (isset($_POST['email'], $_POST['p'])) {
     
     if (login($email, $password, $mysqli) == true) {
         // Login success 
-        header("Location: ../protected_page.php");
+        header("Location: ../protected_page.php?campo=Home");
         exit();
     } else {
         // Login failed 

@@ -23,6 +23,25 @@ function input_actCulturales()
     
     
 }
+function imput_unrcContactos(){
+  $mode = array("tipo", "nombre", "telefono", "mail");
+    print'<form action="/modificacionDB/insertarDB.php" method="post" >';
+      for ($i = 0; $i <= 3; $i++) {
+              print '<label><h6 style="color:black">';
+              print $mode[$i];
+              print '</h6></label>' ;
+              print '<p align="left">';
+              print '<label for=';
+              print $mode[$i];
+              print'></label>';
+              print '<input type="text" name=';
+              print ($mode[$i]);print "></p>";
+              
+            }//endfor
+    print '<input name="Agregar" type="submit" value="Agregar">';  
+    print '<input type="hidden" name="table_name" value="unrcContactos">';      
+    print '</form>';
+}
 
 function input_becas()
 {
@@ -47,9 +66,9 @@ function input_becas()
     
 }
 function input_actividades(){
-	$mode = array("facultad", "titulo", "fecha", "descripcion", "img_path");
-	print'<form action="/modificacionDB/insertarDB.php" method="post" >';
-      for ($i = 0; $i <= 4; $i++) {
+	$mode = array("facultad", "titulo", "fecha", "descripcion");
+	print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data" >';
+      for ($i = 0; $i <= 3; $i++) {
               print '<label><h6 style="color:black">';
               print $mode[$i];
               print '</h6></label>' ;
@@ -61,6 +80,8 @@ function input_actividades(){
               print ($mode[$i]);print "></p>";
               
             }//endfor
+    print '<label for="imagen">Imagen:</label>
+          <input type="file" name="imagen" id="imagen" />';
     print '<input name="Agregar" type="submit" value="Agregar">';
     print '<input type="hidden" name="table_name" value="actividades">';         
     print '</form>';
@@ -162,21 +183,24 @@ function input_localesAdheridos(){
     print '</form>';
 }
 
-function input_calendarioAcademico(){
+function input_calendarios(){
 	$i=0;
-	$mode = array("img_path");
+	$mode = array("facultad","img_path");
 	print'<form action="/modificacionDB/insertarDB.php" method="post" >';
-    print '<label><h6 style="color:black">';
-    print $mode[$i];
-    print '</h6></label>' ;
-    print '<p align="left">';
-    print '<label for=';
-    print $mode[$i];
-    print'></label>';
-    print '<input type="text" name=';
-    print ($mode[$i]);print "></p>";
+    for ($i = 0; $i <= 1; $i++) {
+              print '<label><h6 style="color:black">';
+              print $mode[$i];
+              print '</h6></label>' ;
+              print '<p align="left">';
+              print '<label for=';
+              print $mode[$i];
+              print'></label>';
+              print '<input type="text" name=';
+              print ($mode[$i]);print "></p>";
+              
+            }//endfor
     print '<input name="Agregar" type="submit" value="Agregar">';  
-    print '<input type="hidden" name="table_name" value="calendarioAcademico">';       
+    print '<input type="hidden" name="table_name" value="calendarios">';       
     print '</form>';    
 }
 
@@ -200,24 +224,6 @@ function input_noticias(){
             
 }
 
-function input_contactateconNosotros(){
-	$i=0;
-	$mode = array("mail");
-	print'<form action="/modificacionDB/insertarDB.php" method="post" >';
-    print '<label><h6 style="color:black">';
-    print $mode[$i];
-    print '</h6></label>' ;
-    print '<p align="left">';
-    print '<label for=';
-    print $mode[$i];
-    print'></label>';
-    print '<input type="text" name=';
-    print ($mode[$i]);print "></p>";  
-    print '<input name="Agregar" type="submit" value="Agregar">'; 
-    print '<input type="hidden" name="table_name" value="contactateconNosotros">';       
-    print '</form>';
-            
-}
 
 function input_mapas(){
 	$i=0;
@@ -237,4 +243,21 @@ function input_mapas(){
     print '</form>';          
               
             
+}
+function input_fb(){
+  $i=0;
+  $mode = array("facebook_path");
+  print'<form action="/modificacionDB/insertarDB.php" method="post" >';
+    print '<label><h6 style="color:black">';
+    print $mode[$i];
+    print '</h6></label>' ;
+    print '<p align="left">';
+    print '<label for=';
+    print $mode[$i];
+    print'></label>';
+    print '<input type="text" name=';
+    print ($mode[$i]);print "></p>";  
+    print '<input name="Agregar" type="submit" value="Agregar">'; 
+    print '<input type="hidden" name="table_name" value="fb">';       
+    print '</form>';
 }

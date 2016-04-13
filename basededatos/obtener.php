@@ -14,17 +14,14 @@ sec_session_start();
 //require 'selectAllJSON.php';
 $table_name = $_GET['tabla'];
 $version = $_GET['version'];
-$dato;
+$dato=null;
+print $table_name;
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		$cantcol=0;
     // Manejar petición GET
-    if(is_null($version)){
-        $regs = functions::getVersion($table_name); 
-				  
-    }else{
-        $regs = functions::getAll($table_name,$version);
+   $regs = functions::getAll($table_name,$version);
 				
-    }
+    
 
     if ($regs) {
 
@@ -46,8 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 					endforeach;
 					print"</tbody>
 					</table>";
-					$mode = current($shop1);
-					$mode = array_keys($mode);
+					
 					print'<form action="/modificacionDB/insertar_meta.php" method="post" >';
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
 					print '<input type="hidden" name="cantcol" value="'.$cantcol.'">';
@@ -59,8 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 					print '<label for="id"> ID : </label>';
 					print '<input type="text" name="id" value="" maxlength="4" size="4"">';
 					print '</form>';
-					print'<form action="/modificacionDB/actualizar_metas.php" method="post" >';
+					print'<form action="/modificacionDB/actualizar_meta.php" method="post" >';
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
+					print '<input type="hidden" name="array" value="'.$datos.'">';
 					print '<input name="Modificar" type="submit" value="Modificar">';
 					print '<label for="id"> ID : </label>';
 					print '<input type="text" name="id" value="" maxlength="4" size="4"">';
@@ -74,10 +71,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 					print'<form action="/modificacionDB/borrar_meta.php?table_name='.$table_name.'" method="post" >';
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
 					print '<input name="Eliminar" type="submit" value="Eliminar">';
+					print '<label for="id"> ID : </label>';
+					print '<input type="text" name="id" value="" maxlength="4" size="4"">';
 					print '</form>';
-					print'<form action="/modificacionDB/actualizar_metas.php" method="post" >';
+					print'<form action="/modificacionDB/actualizar_meta.php" method="post" >';
+					print '<input type="hidden" name="array" value="'.$datos.'">';
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
 					print '<input name="Modificar" type="submit" value="Modificar">';
+					print '<label for="id"> ID : </label>';
+					print '<input type="text" name="id" value="" maxlength="4" size="4"">';
 					print '</form>';
 				}//end else
 		}else{
@@ -89,10 +91,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 					print'<form action="/modificacionDB/borrar_meta.php?table_name='.$table_name.'" method="post" >';
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
 					print '<input name="Eliminar" type="submit" value="Eliminar">';
+					print '<label for="id"> ID : </label>';
+					print '<input type="text" name="id" value="" maxlength="4" size="4"">';
 					print '</form>';
-					print'<form action="/modificacionDB/actualizar_metas.php" method="post" >';
+					print'<form action="/modificacionDB/actualizar_meta.php" method="post" >';
+					print '<input type="hidden" name="array" value="'.$datos.'">';
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
 					print '<input name="Modificar" type="submit" value="Modificar">';
+					print '<label for="id"> ID : </label>';
+					print '<input type="text" name="id" value="" maxlength="4" size="4"">';
 					print '</form>';
 				}//end else
 

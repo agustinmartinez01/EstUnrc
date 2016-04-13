@@ -18,6 +18,7 @@
 include_once '../includes/db_connect.php';
 include_once '../includes/functions.php';
 include_once 'obtener_metas.php';
+include_once '../basededatos/db_connect.php';
 
 sec_session_start();
 ?>
@@ -46,9 +47,15 @@ sec_session_start();
                   input_actCulturales();
                   
                   break;
+              case "fb" :
+                input_fb();
+                break;
               case "becas":
                   input_becas();
                   
+                  break;
+              case "unrcContactos":
+                  imput_unrcContactos();
                   break;
               case "actividades":
                   input_actividades();
@@ -68,14 +75,11 @@ sec_session_start();
               case "localesAdheridos":
                   input_localesAdheridos();
                   break;
-              case "calendarioAcademicos":
-                  input_calendarioAcademico();
+              case "calendarios":
+                  input_calendarios();
                   break;
               case "noticias":
                   input_noticias();
-                  break;
-              case "contactateconNosotros":
-                 input_contactateconNosotros();
                   break;
               case "mapas":
                   input_mapas();

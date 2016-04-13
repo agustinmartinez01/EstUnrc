@@ -42,30 +42,30 @@ sec_session_start();
 
             <ul id="nav">
                 <li><a href="/protected_page.php?campo=Home">Home</a></li>
-                <li><a class="hsubs" href="protected_page.php?campo=actCulturales">ActividadesCulturales</a></li>
                 <li><a class="hsubs" href="protected_page.php?campo=becas">Becas   </a></li>
-                <li><a class="hsubs" href="protected_page.php?campo=actividades">AvtividadesXFacultad</a></li>
-                <li><a href="protected_page.php?campo=carnets">CarnetFURC</a></li>
-                <li><a href="protected_page.php?campo=categorias">Categorias</a></li>
-                <li><a href="protected_page.php?campo=contactateMails">Mails  </a></li>
-								<li><a href="protected_page.php?campo=espacioRedes">EspacioIndep..Redes</a></li>
-								<li><a href="protected_page.php?campo=localesAdheridos">LocalesAdheridos</a></li>
+                <li><a href="protected_page.php?campo=carnets">Carnet FURC</a></li>
+                <li><a href="protected_page.php?campo=localesAdheridos">Locales Adheridos</a></li>
+                <li><a href="protected_page.php?campo=unrcContactos">Contactos UNRC</a></li>
+                <li><a href="protected_page.php?campo=espacioRedes">Espacio Independiente</a></li>
+                <li><a href="protected_page.php?campo=contactateMails">Banco de Ideas</a></li>
+                <li><a class="hsubs" href="protected_page.php?campo=actividades">Charlas Viajes y Congresos</a></li>
                 <li><a href="protected_page.php?campo=">Más    </a>
                   <ul class="subs">
-                        <li><a href="protected_page.php?campo=calendarioAcademicos">CalendarioAcademico</a></li>
-                        <li><a href="protected_page.php?campo=noticias">Noticias</a></li>
-                        <li><a href="protected_page.php?campo=contactateconNosotros">contactNosotros</a></li>
-                        <li><a href="protected_page.php?campo=mapas">Mapa</a></li>
+                        <li><a class="hsubs" href="protected_page.php?campo=actCulturales">ActividadesCulturales</a></li>
+                        <li><a class="hsubs" href="protected_page.php?campo=calendarios">Calendario Academico</a></li>
+                        <li><a class="hsubs" href="protected_page.php?campo=fb">Noticias</a></li>
+                        <li><a class="hsubs" href="protected_page.php?campo=mapas">Mapa UNRC</a></li>
                     </ul>
                 </li>
-								
-							<div id="lavalamp"></div>
+
+               <div id="lavalamp"></div>
 		       
-            	<div><?php $v1 = $_GET['campo']; 
+            	<div>
+                    <?php $v1 = $_GET['campo']; 
                     if ($v1!="Home"){
 								echo "<iframe src='basededatos/obtener.php?tabla={$v1}&version=0'name='xxxx' width='100%' height='500' scrolling='Auto' frameborder='0' id='xxxx'>";
 								}else{
-                  echo "<iframe src='https://lh3.googleusercontent.com/-kioqQVxubo4/AAAAAAAAAAI/AAAAAAAAABs/8NpDR_yuXd8/photo.jpg' marginwidth='100' name='xxxx' width='100%' height='600' scrolling='Auto' frameborder='0' id='xxxx'>";
+                                echo "<iframe src='https://lh3.googleusercontent.com/-kioqQVxubo4/AAAAAAAAAAI/AAAAAAAAABs/8NpDR_yuXd8/photo.jpg' marginwidth='100' name='xxxx' width='100%' height='600' scrolling='Auto' frameborder='0' id='xxxx'>";
                 }?>
 							</div>
 	    

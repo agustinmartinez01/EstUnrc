@@ -1,7 +1,7 @@
 <?php
 require '../basededatos/Database.php';
 include_once '../basededatos/mysql_login.php';
-include_once '../modificacionDB/db_connect1.php';
+
 
 
 
@@ -18,7 +18,7 @@ function insert_act_cult($titulo, $fecha,$descripcion, $img_path)
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
 
-        return $sentencia->execute(
+        $sentencia->execute(
             array(
                 $titulo,
                 $fecha,
@@ -26,7 +26,12 @@ function insert_act_cult($titulo, $fecha,$descripcion, $img_path)
                 $img_path
             )
         );
-
+        if($sentencia){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        return $sentencia;
     }
 
 function insert_becas($nombre, $categoria,$informacion, $img_path){
@@ -39,7 +44,7 @@ function insert_becas($nombre, $categoria,$informacion, $img_path){
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
 
-        return $sentencia->execute(
+        $sentencia->execute(
             array(
                 $nombre,
                 $categoria,
@@ -47,9 +52,41 @@ function insert_becas($nombre, $categoria,$informacion, $img_path){
                 $img_path
             )
         );
+        if($comando){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        return $sentencia;
 }
 
-function insert_actividades($facultad, $titulo,$fecha,$descripcion, $img_path){
+function insert_actividades($facultad, $titulo,$fecha,$descripcion){
+    if ($_FILES["imagen"]["error"] > 0){
+      echo "ha ocurrido un error";
+    } else {
+      //ahora vamos a verificar si el tipo de archivo es un tipo de imagen permitido.
+      //y que el tamano del archivo no exceda los 100kb
+      $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
+      $limite_kb = 130;
+
+      if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
+        //esta es la ruta donde copiaremos la imagen
+        //recuerden que deben crear un directorio con este mismo nombre
+        //en el mismo lugar donde se encuentra el archivo subir.php
+        $ruta = "/var/www/EstudiantesUNRC/img/" . $_FILES['imagen']['name'];
+          //aqui movemos el archivo desde la ruta temporal a nuestra ruta
+        //usamos la variable $resultado para almacenar el resultado del proceso de mover el archivo
+        //almacenara true o false
+        $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
+        if ($resultado){
+          echo "el archivo ha sido movido exitosamente";
+        } else {
+          echo "ocurrio un error al mover el archivo.";
+        }
+      } else {
+        echo "archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
+      }
+    }
     $comando = "INSERT INTO actividades ( " .
             "facultad," .
             " titulo," .
@@ -60,15 +97,21 @@ function insert_actividades($facultad, $titulo,$fecha,$descripcion, $img_path){
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
 
-        return $sentencia->execute(
+        $sentencia->execute(
             array(
                 $facultad,
                 $titulo,
                 $fecha,
                 $descripcion,
-                $img_path
+                $ruta
             )
         );
+        if($sentencia){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        return $sentencia;
 }
 
 function insert_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,$img_path_que_es,$img_path_donde_consigo){
@@ -82,7 +125,7 @@ function insert_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
 
-        return $sentencia->execute(
+        $sentencia->execute(
             array(
                 $facultad,
                 $titulo,
@@ -91,6 +134,12 @@ function insert_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,
                 $img_path
             )
         );
+        if($sentencia){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        return $sentencia;
 
 }
 
@@ -101,11 +150,17 @@ function insert_categorias($titulo){
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
 
-        return $sentencia->execute(
+        $sentencia->execute(
             array(
                 $titulo
             )
         );
+        if($sentencia){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        return $sentencia;
 }
 
 function insert_contactateMails($mail){
@@ -115,11 +170,17 @@ function insert_contactateMails($mail){
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
 
-        return $sentencia->execute(
+        $sentencia->execute(
             array(
                 $mail
             )
         );
+        if($sentencia){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        return $sentencia;
 }
 
 function insert_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$email,$img_path){
@@ -134,7 +195,7 @@ function insert_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$emai
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
 
-        return $sentencia->execute(
+        $sentencia->execute(
             array(
                 $titulo,
                 $descripcion,
@@ -144,6 +205,12 @@ function insert_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$emai
                 $img_path
             )
         );
+        if($sentencia){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        return $sentencia;
 
 }
 
@@ -157,7 +224,7 @@ function insert_localesAdheridos($nombre,$direccion,$rubro,$descuento){
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
 
-        return $sentencia->execute(
+        $sentencia->execute(
             array(
                 $nombre,
                 $direccion,
@@ -165,22 +232,37 @@ function insert_localesAdheridos($nombre,$direccion,$rubro,$descuento){
                 $descuento
             )
         );
+        if($sentencia){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        return $sentencia;
 }
-
-function insert_calendarioAcademico($img_path){
-  $comando = "INSERT INTO calendarioAcademicos ( " .
-            "img_path)" .
-            "  VALUES(?)";
+//!!!!!!!!!!!!!1REVISAR..............
+function insert_calendarios($facultad,$img_path){
+  $comando = "INSERT INTO calendarios ( " .
+            "facultad," .
+            " img_path)" .
+            " VALUES( ?,?)";
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
 
-        return $sentencia->execute(
+        $sentencia->execute(
             array(
-                $img_path
+                $facultad,
+                $img_path,
+               
             )
         );
+        if($sentencia){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        return $sentencia;
 }
-
+///!!!!!!!!!!!!!!!!!REVISAR1
 function insert_noticias($link_face){
   $comando = "INSERT INTO noticias ( " .
             "link_face)" .
@@ -188,25 +270,37 @@ function insert_noticias($link_face){
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
 
-        return $sentencia->execute(
+        $sentencia->execute(
             array(
                 $link_face
             )
         );
+        if($sentencia){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        return $sentencia;
 }
-
-function insert_contactateconNosotros($mail){
-  $comando = "INSERT INTO contactateconNosotros ( " .
-            "mail)" .
+//ESRA DE MAS!!!!!!!!!!!!!!!!!!!!!!!!!
+function insert_fb($facebook_path){
+  $comando = "INSERT INTO fb ( " .
+            "facebook_path)" .
             "  VALUES(?)";
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
 
-        return $sentencia->execute(
+        $sentencia->execute(
             array(
-                $mail
+                $facebook_path
             )
         );
+        if($sentencia){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        return $sentencia;
 }
 
 
@@ -288,22 +382,29 @@ function insert_contactateconNosotros($mail){
                   $descuento=$_POST['descuento'];
                   insert_localesAdheridos($nombre,$direccion,$rubro,$descuento);
                   break;
-              case "calendarioAcademicos":
-                  array("img_path");
+              case "calendarios":
+                  $facultad=$_POST['facultad'];
                   $img_path=$_POST['img_path'];
-                  insert_calendarioAcademico($img_path);
+                  insert_calendarios($facultad,$img_path);
                   break;
               case "noticias":
                   $link_face=$_POST['link_face'];
                   insert_noticias($link_face);
                   break;
-              case "contactateconNosotros":
+              case "unrcContactos":
+                  $tipo=$_POST['tipo'];
+                  $nombre=$_POST['nombre'];
+                  $telefono=$_POST['telefono'];
                   $mail=$_POST['mail'];
-                  insert_contactateconNosotros($mail);
+                  insert_unrcContactos($tipo,$nombre,$telefono,$mail);
                   break;
               case "mapas":
                   
                   break;
+              case "fb" :
+                $facebook_path=$_POST['facebook_path'];
+                insert_fb($facebook_path);
+                break;
             }
           
 

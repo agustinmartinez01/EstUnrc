@@ -22,8 +22,8 @@ class functions
     {
         
         
-        $consulta = "SELECT tbl.* FROM $table_name tbl, versiones v where v.nombre_tabla = '$table_name' and v.version>$table_version;";
-
+        $consulta = "SELECT * FROM $table_name;";
+      
         try {
             // Preparar sentencia
             $comando = Database::getInstance()->getDb()->prepare($consulta);
