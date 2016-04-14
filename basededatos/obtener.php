@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
 					print '<input name="Eliminar" type="submit" value="Eliminar">';
 					print '<label for="id"> ID : </label>';
-					print '<input type="text" name="id" value="" maxlength="4" size="4"">';
+					print '<input type="text" name="id" value="" maxlength="14" size="14"">';
 					print '</form>';
 					print'<form action="/modificacionDB/actualizar_meta.php" method="post" >';
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
 					print '<input name="Eliminar" type="submit" value="Eliminar">';
 					print '<label for="id"> ID : </label>';
-					print '<input type="text" name="id" value="" maxlength="4" size="4"">';
+					print '<input type="text" name="id" value="" maxlength="14" size="14"">';
 					print '</form>';
 					print'<form action="/modificacionDB/actualizar_meta.php" method="post" >';
 					print '<input type="hidden" name="array" value="'.$datos.'">';
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 					print '<input type="hidden" name="table_name" value="'.$table_name.'">';
 					print '<input name="Eliminar" type="submit" value="Eliminar">';
 					print '<label for="id"> ID : </label>';
-					print '<input type="text" name="id" value="" maxlength="4" size="4"">';
+					print '<input type="text" name="id" value="" maxlength="14" size="14"">';
 					print '</form>';
 					print'<form action="/modificacionDB/actualizar_meta.php" method="post" >';
 					print '<input type="hidden" name="array" value="'.$datos.'">';

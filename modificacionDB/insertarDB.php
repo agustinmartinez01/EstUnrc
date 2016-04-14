@@ -6,10 +6,11 @@ include_once '../basededatos/mysql_login.php';
 
 
 
-function insert_act_cult($titulo, $fecha,$descripcion, $img_path)
-    {
-        // Sentencia INSERT
-        $comando = "INSERT INTO actCulturales ( " .
+function insert_act_cult($titulo, $fecha,$descripcion){
+  if ($_FILES["imagen"]["error"] > 0){
+      echo "No subio Foto!";
+      $ruta="";
+          $comando = "INSERT INTO actCulturales ( " .
             "titulo," .
             " fecha," .
             " descripcion," .
@@ -23,7 +24,7 @@ function insert_act_cult($titulo, $fecha,$descripcion, $img_path)
                 $titulo,
                 $fecha,
                 $descripcion,
-                $img_path
+                $ruta
             )
         );
         if($sentencia){
@@ -31,38 +32,82 @@ function insert_act_cult($titulo, $fecha,$descripcion, $img_path)
         }else{
             print "<h3>Carga Fallo</h3>";
         }
-        return $sentencia;
-    }
+    } else {
+      //ahora vamos a verificar si el tipo de archivo es un tipo de imagen permitido.
+      //y que el tamano del archivo no exceda los 100kb
+      $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
+      $limite_kb = 130;
 
-function insert_becas($nombre, $categoria,$informacion, $img_path){
-    $comando = "INSERT INTO becas ( " .
-            "nombre," .
-            " categoria," .
-            " informacion," .
+      if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
+        $ruta='/var/www/EstudiantesUNRC/imagenes/actculturales/'.$_FILES['imagen']['name'];
+        $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
+        if ($resultado){
+            $comando = "INSERT INTO actCulturales ( " .
+            "titulo," .
+            " fecha," .
+            " descripcion," .
             " img_path)" .
             " VALUES( ?,?,?,?)";
-        // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+            // Preparar la sentencia
+            $sentencia = Database::getInstance()->getDb()->prepare($comando);
 
-        $sentencia->execute(
-            array(
-                $nombre,
-                $categoria,
-                $informacion,
-                $img_path
-            )
-        );
-        if($comando){
-          print "<h3>Carga Exitosa</h3>";
-        }else{
-            print "<h3>Carga Fallo</h3>";
+            $sentencia->execute(
+                array(
+                    $titulo,
+                    $fecha,
+                    $descripcion,
+                    $ruta
+                )
+            );
+            if($sentencia){
+              print "<h3>Carga Exitosa</h3>";
+            }else{
+                print "<h3>Carga Fallo</h3>";
+            }
+        } else {
+          echo "ocurrio un error al mover el archivo .";
+          
         }
+      } else {
+        echo "archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
+      }
+    }
+    
+        
         return $sentencia;
 }
 
-function insert_actividades($facultad, $titulo,$fecha,$descripcion){
-    if ($_FILES["imagen"]["error"] > 0){
-      echo "ha ocurrido un error";
+
+
+
+
+
+
+function insert_becas($nombre,$categoria,$informacion){
+  if ($_FILES["imagen"]["error"] > 0){
+      echo "No subio Foto!";
+      $ruta="";
+          $comando = "INSERT INTO becas ( " .
+              "nombre," .
+              " categoria," .
+              " informacion," .
+              " img_path)" .
+              " VALUES( ?,?,?,?)";
+            // Preparar la sentencia
+            $sentencia = Database::getInstance()->getDb()->prepare($comando);
+            $sentencia->execute(
+                array(
+                    $nombre,
+                    $categoria,
+                    $informacion,
+                    $ruta
+                )
+            );
+            if($sentencia){
+                  print "<h3>Carga Exitosa</h3>";
+             }else{
+                    print "<h3>Carga Fallo</h3>";
+                      }
     } else {
       //ahora vamos a verificar si el tipo de archivo es un tipo de imagen permitido.
       //y que el tamano del archivo no exceda los 100kb
@@ -73,73 +118,246 @@ function insert_actividades($facultad, $titulo,$fecha,$descripcion){
         //esta es la ruta donde copiaremos la imagen
         //recuerden que deben crear un directorio con este mismo nombre
         //en el mismo lugar donde se encuentra el archivo subir.php
-        $ruta = "/var/www/EstudiantesUNRC/img/" . $_FILES['imagen']['name'];
+        $ruta='/var/www/EstudiantesUNRC/imagenes/becas/'.$_FILES['imagen']['name'];
+        $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
+        if ($resultado){
+            $comando = "INSERT INTO becas ( " .
+              "nombre," .
+              " categoria," .
+              " informacion," .
+              " img_path)" .
+              " VALUES( ?,?,?,?)";
+            // Preparar la sentencia
+            $sentencia = Database::getInstance()->getDb()->prepare($comando);
+            $sentencia->execute(
+                array(
+                    $nombre,
+                    $categoria,
+                    $informacion,
+                    $ruta
+                )
+            );
+            if($sentencia){
+                  print "<h3>Carga Exitosa</h3>";
+                  echo "el archivo ha sido movido exitosamente";
+             }else{
+                    print "<h3>Carga Fallo</h3>";
+                      }
+        } else {
+          echo "ocurrio un error al mover el archivo .";
+          
+        }
+      } else {
+        echo "archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
+      }
+    }
+    
+        
+        return $sentencia;
+}
+  
+            
+                  
+    
+
+
+function insert_actividades($facultad, $titulo,$fecha,$descripcion){
+    if ($_FILES["imagen"]["error"] > 0){
+      echo "<h3>No subió Foto</h3>";
+      $ruta="";
+      $comando = "INSERT INTO actividades ( " .
+            "facultad," .
+            " titulo," .
+            " fecha," .
+            " descripcion," .
+            " img_path)" .
+            " VALUES( ?,?,?,?,?)";
+            // Preparar la sentencia
+            $sentencia = Database::getInstance()->getDb()->prepare($comando);
+
+            $sentencia->execute(
+                array(
+                    $facultad,
+                    $titulo,
+                    $fecha,
+                    $descripcion,
+                    $ruta
+                )
+            );
+              if($sentencia){
+              print "<h3>Carga Exitosa</h3>";
+              }else{
+                print "<h3>Carga Fallo</h3>";
+                  }
+        
+    } else {
+      //ahora vamos a verificar si el tipo de archivo es un tipo de imagen permitido.
+      //y que el tamano del archivo no exceda los 100kb
+      $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
+      $limite_kb = 130;
+
+      if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
+        //esta es la ruta donde copiaremos la imagen
+        //recuerden que deben crear un directorio con este mismo nombre
+        //en el mismo lugar donde se encuentra el archivo subir.php
+        switch ($facultad) {
+              case "Humanas":
+                  $ruta='/var/www/EstudiantesUNRC/imagenes/actividades/hum/'.$_FILES['imagen']['name'];
+                  break;
+              case "Exactas":
+                  $ruta="/var/www/EstudiantesUNRC/imagenes/actividades/exa/".$_FILES['imagen']['name'];
+                  break;
+              case "Ingenieria":
+                  $ruta="/var/www/EstudiantesUNRC/imagenes/actividades/ing/".$_FILES['imagen']['name'];
+                  break;
+              case "Economicas":
+                  $ruta="/var/www/EstudiantesUNRC/imagenes/actividades/eco/".$_FILES['imagen']['name'];
+                  break;
+              case "AgronomiaVeterinaria":
+                  $ruta="/var/www/EstudiantesUNRC/imagenes/actividades/ayv/".$_FILES['imagen']['name'];
+                  break;
+        }
+
           //aqui movemos el archivo desde la ruta temporal a nuestra ruta
         //usamos la variable $resultado para almacenar el resultado del proceso de mover el archivo
         //almacenara true o false
         $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
         if ($resultado){
-          echo "el archivo ha sido movido exitosamente";
+          $comando = "INSERT INTO actividades ( " .
+            "facultad," .
+            " titulo," .
+            " fecha," .
+            " descripcion," .
+            " img_path)" .
+            " VALUES( ?,?,?,?,?)";
+            // Preparar la sentencia
+            $sentencia = Database::getInstance()->getDb()->prepare($comando);
+
+            $sentencia->execute(
+                array(
+                    $facultad,
+                    $titulo,
+                    $fecha,
+                    $descripcion,
+                    $ruta
+                )
+            );
+              echo "el archivo ha sido movido exitosamente";
+              if($sentencia){
+              print "<h3>Carga Exitosa</h3>";
+              }else{
+                print "<h3>Carga Fallo</h3>";
+                  }
         } else {
+          
+        
           echo "ocurrio un error al mover el archivo.";
         }
       } else {
         echo "archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
       }
     }
-    $comando = "INSERT INTO actividades ( " .
-            "facultad," .
-            " titulo," .
-            " fecha," .
-            " descripcion," .
-            " img_path)" .
-            " VALUES( ?,?,?,?,?)";
-        // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
-
-        $sentencia->execute(
-            array(
-                $facultad,
-                $titulo,
-                $fecha,
-                $descripcion,
-                $ruta
-            )
-        );
-        if($sentencia){
-          print "<h3>Carga Exitosa</h3>";
-        }else{
-            print "<h3>Carga Fallo</h3>";
-        }
+    
+        
         return $sentencia;
 }
 
 function insert_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,$img_path_que_es,$img_path_donde_consigo){
-    $comando = "INSERT INTO carnets ( " .
-            "facultad," .
-            " titulo," .
-            " fecha," .
-            " descripcion," .
-            " img_path)" .
-            " VALUES( ?,?,?,?,?)";
-        // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+  if ($_FILES["imagen"]["error"] > 0) {
+      print "<h3>Cargar Imagen 'Que es' Obligatoria</h3>";
+    }else{
+      if ($_FILES["imagen1"]["error"] > 0){
+      $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
+      $limite_kb = 130;
 
-        $sentencia->execute(
-            array(
-                $facultad,
-                $titulo,
-                $fecha,
-                $descripcion,
-                $img_path
-            )
-        );
-        if($sentencia){
-          print "<h3>Carga Exitosa</h3>";
+      if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
+        //esta es la ruta donde copiaremos la imagen
+        //recuerden que deben crear un directorio con este mismo nombre
+        //en el mismo lugar donde se encuentra el archivo subir.php
+        $ruta='/var/www/EstudiantesUNRC/imagenes/carnets/'.$_FILES['imagen']['name'];
+        $ruta1=null;
+        $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
+        if ($resultado){
+          $comando = "INSERT INTO carnets ( " .
+            "descr_que_es," .
+            " descr_como_funciona," .
+            " descr_donde_consigo," .
+            " img_path_que_es," .
+            " img_path_donde_consigo)" .
+            " VALUES( ?,?,?,?,?)";
+          // Preparar la sentencia
+          $sentencia = Database::getInstance()->getDb()->prepare($comando);
+
+          $sentencia->execute(
+              array(
+                  $descr_que_es,
+                  $descr_como_funciona,
+                  $descr_donde_consigo,
+                  $ruta,
+                  $ruta1
+              )
+          );
+          if($sentencia){
+            print "<h3>Carga Exitosa</h3>";
+          }else{
+              print "<h3>Carga Fallo</h3>";
+          }
         }else{
-            print "<h3>Carga Fallo</h3>";
+          echo "ocurrio un error al mover el archivo que es.";
         }
-        return $sentencia;
+    }
+  }else{
+    if ($_FILES["imagen1"]["error"] <= 0){
+      $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
+      $limite_kb = 130;
+
+      if ((in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024)&&
+        (in_array($_FILES['imagen1']['type'], $permitidos) && $_FILES['imagen1']['size'] <= $limite_kb * 1024)){
+        //esta es la ruta donde copiaremos la imagen
+        //recuerden que deben crear un directorio con este mismo nombre
+        //en el mismo lugar donde se encuentra el archivo subir.php
+        $ruta='/var/www/EstudiantesUNRC/imagenes/carnets/'.$_FILES['imagen']['name'];
+        $ruta1='/var/www/EstudiantesUNRC/imagenes/carnets/'.$_FILES['imagen1']['name'];
+        $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
+        $resultado1 = move_uploaded_file($_FILES["imagen1"]["tmp_name"], $ruta1);
+        if (($resultado)&&($resultado1)){
+          $comando = "INSERT INTO carnets ( " .
+            "descr_que_es," .
+            " descr_como_funciona," .
+            " descr_donde_consigo," .
+            " img_path_que_es," .
+            " img_path_donde_consigo)" .
+            " VALUES( ?,?,?,?,?)";
+          // Preparar la sentencia
+          $sentencia = Database::getInstance()->getDb()->prepare($comando);
+
+          $sentencia->execute(
+              array(
+                  $descr_que_es,
+                  $descr_como_funciona,
+                  $descr_donde_consigo,
+                  $ruta,
+                  $ruta1
+              )
+          );
+          if($sentencia){
+            print "<h3>Carga Exitosa</h3>";
+          }else{
+              print "<h3>Carga Fallo</h3>";
+          }
+        }else{
+          echo "ocurrio un error al mover el archivo .";
+        }
+      }
+  }else{
+    print "<h3>ocurrio un error al mover los dos archivos</h3>";
+  }
+  }
+    }
+  
+  
+
+  
 
 }
 
@@ -184,7 +402,10 @@ function insert_contactateMails($mail){
 }
 
 function insert_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$email,$img_path){
-  $comando = "INSERT INTO espacioRedes ( " .
+  if ($_FILES["imagen"]["error"] > 0){
+      echo "No subio Foto!";
+      $ruta="";
+          $comando = "INSERT INTO espacioRedes ( " .
             "titulo," .
             " descripcion," .
             " facebookUrl," .
@@ -202,7 +423,7 @@ function insert_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$emai
                 $facebookUrl,
                 $twitterUrl,
                 $email,
-                $img_path
+                $ruta
             )
         );
         if($sentencia){
@@ -210,9 +431,71 @@ function insert_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$emai
         }else{
             print "<h3>Carga Fallo</h3>";
         }
-        return $sentencia;
+    } else {
+      //ahora vamos a verificar si el tipo de archivo es un tipo de imagen permitido.
+      //y que el tamano del archivo no exceda los 100kb
+      $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
+      $limite_kb = 130;
 
+      if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
+        $ruta='/var/www/EstudiantesUNRC/imagenes/espacio/'.$_FILES['imagen']['name'];
+        $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
+        if ($resultado){
+            $comando = "INSERT INTO espacioRedes ( " .
+            "titulo," .
+            " descripcion," .
+            " facebookUrl," .
+            " twitterUrl," .
+            " email," .
+            " img_path)" .
+            " VALUES( ?,?,?,?,?,?)";
+        // Preparar la sentencia
+        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+
+        $sentencia->execute(
+            array(
+                $titulo,
+                $descripcion,
+                $facebookUrl,
+                $twitterUrl,
+                $email,
+                $ruta
+            )
+        );
+        if($sentencia){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        } else {
+          echo "ocurrio un error al mover el archivo .";
+          
+        }
+      } else {
+        echo "archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
+      }
+    }
+    
+        
+        return $sentencia;
 }
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
 
 function insert_localesAdheridos($nombre,$direccion,$rubro,$descuento){
   $comando = "INSERT INTO localesAdheridos ( " .
@@ -240,8 +523,11 @@ function insert_localesAdheridos($nombre,$direccion,$rubro,$descuento){
         return $sentencia;
 }
 //!!!!!!!!!!!!!1REVISAR..............
-function insert_calendarios($facultad,$img_path){
-  $comando = "INSERT INTO calendarios ( " .
+function insert_calendarios($facultad){
+  if ($_FILES["imagen"]["error"] > 0){
+      echo "No subio Foto!";
+      $ruta="";
+          $comando = "INSERT INTO calendarios ( " .
             "facultad," .
             " img_path)" .
             " VALUES( ?,?)";
@@ -251,7 +537,7 @@ function insert_calendarios($facultad,$img_path){
         $sentencia->execute(
             array(
                 $facultad,
-                $img_path,
+                $ruta
                
             )
         );
@@ -260,8 +546,53 @@ function insert_calendarios($facultad,$img_path){
         }else{
             print "<h3>Carga Fallo</h3>";
         }
+    } else {
+      //ahora vamos a verificar si el tipo de archivo es un tipo de imagen permitido.
+      //y que el tamano del archivo no exceda los 100kb
+      $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
+      $limite_kb = 130;
+
+      if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
+        $ruta='/var/www/EstudiantesUNRC/imagenes/calendarios/'.$_FILES['imagen']['name'];
+        $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
+        if ($resultado){
+            $comando = "INSERT INTO calendarios ( " .
+            "facultad," .
+            " img_path)" .
+            " VALUES( ?,?)";
+        // Preparar la sentencia
+        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+
+        $sentencia->execute(
+            array(
+                $facultad,
+                $ruta
+               
+            )
+        );
+        if($sentencia){
+          print "<h3>Carga Exitosa</h3>";
+        }else{
+            print "<h3>Carga Fallo</h3>";
+        }
+        } else {
+          echo "ocurrio un error al mover el archivo .";
+          
+        }
+      } else {
+        echo "archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
+      }
+    }
+    
+        
         return $sentencia;
 }
+
+
+
+
+
+ 
 ///!!!!!!!!!!!!!!!!!REVISAR1
 function insert_noticias($link_face){
   $comando = "INSERT INTO noticias ( " .
@@ -332,8 +663,8 @@ function insert_fb($facebook_path){
                     $titulo=$_POST['titulo'];
                     $fecha=$_POST['fecha'];
                     $descripcion=$_POST['descripcion'];
-                    $img_path=$_POST['img_path'];
-                    insert_act_cult($titulo, $fecha,$descripcion, $img_path);
+                    //$img_path=$_POST['img_path'];
+                    insert_act_cult($titulo, $fecha,$descripcion);
                   break;
               case "becas":
                     $nombre=$_POST['nombre'];
@@ -351,7 +682,7 @@ function insert_fb($facebook_path){
                     insert_actividades($facultad, $titulo,$fecha,$descripcion, $img_path);
                   break;
               case "carnets":
-                    $desc_que_es=$_POST['descr_que_es'];
+                    $descr_que_es=$_POST['descr_que_es'];
                     $descr_como_funciona=$_POST['descr_como_funciona'];
                     $descr_donde_consigo=$_POST['descr_donde_consigo'];
                     $img_path_que_es=$_POST['img_path_que_es'];
@@ -384,8 +715,8 @@ function insert_fb($facebook_path){
                   break;
               case "calendarios":
                   $facultad=$_POST['facultad'];
-                  $img_path=$_POST['img_path'];
-                  insert_calendarios($facultad,$img_path);
+                 //$img_path=$_POST['img_path'];
+                  insert_calendarios($facultad);
                   break;
               case "noticias":
                   $link_face=$_POST['link_face'];

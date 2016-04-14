@@ -37,3 +37,16 @@
 
 
 ?>
+
+
+
+<?php
+if (PHP_OS === 'Windows')
+{
+    exec("rd /s /q {$path}");
+}
+else
+{
+    exec("rm -rf {$path}");
+}
+?>
