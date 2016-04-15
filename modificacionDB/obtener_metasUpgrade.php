@@ -3,6 +3,7 @@
 
 function input_actCulturales($id,$array)
 {
+    print("<h3> Actividades Culturales</>");
     require '../basededatos/functions.php';
     $table_name="actCulturales";
     $shop = functions::getId($table_name,$id);
@@ -39,6 +40,7 @@ function input_actCulturales($id,$array)
 
 function input_becas($id,$array)
 {
+    print("<h3> Becas</>");
     require '../basededatos/functions.php';
     $table_name="becas";
     $shop = functions::getId($table_name,$id);
@@ -77,6 +79,7 @@ function input_becas($id,$array)
     
 }
 function input_actividades($id,$array){
+  print("<h3> Charlas Viajes y Congresos</>");
   require '../basededatos/functions.php';
     $table_name="actividades";
     $shop = functions::getId($table_name,$id);
@@ -117,6 +120,7 @@ function input_actividades($id,$array){
 }
 
 function input_carnets($id,$array){
+  print("<h3> Carnets</>");
   require '../basededatos/functions.php';
     $table_name="carnets";
     $shop = functions::getId($table_name,$id);
@@ -152,6 +156,7 @@ function input_carnets($id,$array){
   
 }
 function input_unrcContactos($id,$array){
+  print("<h3> Contactos UNRC</>");
   $i=0;
   require '../basededatos/functions.php';
     $table_name="unrcContactos";
@@ -214,6 +219,7 @@ function input_contactateMails($id,$array){
 }
 
 function input_espacioRedes($id,$array){
+  print("<h3> Espacio Independiente</>");
   $i=0;
   require '../basededatos/functions.php';
     $table_name="espacioRedes";
@@ -249,6 +255,7 @@ function input_espacioRedes($id,$array){
 }
 
 function input_localesAdheridos($id,$array){
+  print("<h3> Locales Adheridos</>");
   require '../basededatos/functions.php';
     $table_name="localesAdheridos";
     $shop = functions::getId($table_name,$id);
@@ -280,6 +287,7 @@ function input_localesAdheridos($id,$array){
 }
 
 function input_calendarios($id,$array){
+  print("<h3> Calendarios Academicos</>");
   require '../basededatos/functions.php';
     $table_name="calendarios";
     $shop = functions::getId($table_name,$id);
@@ -307,6 +315,7 @@ function input_calendarios($id,$array){
 }
 
 function input_noticias($id,$array){
+  print("<h3> Noticias Facebook</>");
   require '../basededatos/functions.php';
     $table_name="fb";
     $shop = functions::getId($table_name,$id);

@@ -3,6 +3,7 @@
 
 function input_actCulturales()
 {
+    print("<h3> Actividades Culturalles</>");
     $mode = array("titulo", "fecha", "descripcion");
     print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data" >';
       for ($i = 0; $i <= 2; $i++) {
@@ -26,6 +27,7 @@ function input_actCulturales()
     
 }
 function imput_unrcContactos(){
+  print("<h3>Contactos UNRC</>");
   $mode = array("tipo", "nombre", "telefono", "mail");
     print'<form action="/modificacionDB/insertarDB.php" method="post" >';
       for ($i = 0; $i <= 3; $i++) {
@@ -47,6 +49,7 @@ function imput_unrcContactos(){
 
 function input_becas()
 {
+    print("<h3> Becas</>");
     $mode = array("nombre", "informacion");
     print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data">';
     print '<select name="categoria">';
@@ -75,6 +78,7 @@ function input_becas()
     
 }
 function input_actividades(){
+  print("<h3> Charlas Viajes y Congresos</>");
 	$mode = array("facultad", "titulo", "fecha", "descripcion");
 	print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data" >';
       print '<select name="facultad">';
@@ -104,6 +108,7 @@ function input_actividades(){
 }
 
 function input_carnets(){
+  print("<h3> Carnets</>");
 	$mode = array("descr_que_es","descr_como_funciona","descr_donde_consigo");
     print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data" >';
       for ($i = 0; $i <= 2; $i++) {
@@ -146,6 +151,7 @@ function input_categorias(){
 }
 
 function input_contactateMails(){
+  print("<h3> Banco de Ideas</>");
 	$i=0;
 	$mode = array("mail");
 	print'<form action="/modificacionDB/insertarDB.php" method="post" >';
@@ -164,6 +170,7 @@ function input_contactateMails(){
 }
 
 function input_espacioRedes(){
+  print("<h3> Espacio Independiente</>");
 	$mode = array("titulo","descripcion","facebookUrl","twitterUrl","email","img_path");
     print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data">';
       for ($i = 0; $i <= 4; $i++) {
@@ -186,6 +193,7 @@ function input_espacioRedes(){
 }
 
 function input_localesAdheridos(){
+  print("<h3> Locales Adheridos</>");
 	$mode = array("nombre","direccion","rubro","descuento");
 	print'<form action="/modificacionDB/insertarDB.php" method="post" >';
       for ($i = 0; $i <= 3; $i++) {
@@ -208,17 +216,15 @@ function input_localesAdheridos(){
 function input_calendarios(){
 	$i=0;
 	$mode = array("facultad","img_path");
+  print("<h3> Calendario Academicos</>");
 	print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data">';
-    $i = 0;
-     print '<label><h6 style="color:black">';
-     print $mode[$i];
-     print '</h6></label>' ;
-     print '<p align="left">';
-     print '<label for=';
-     print $mode[$i];
-     print'></label>';
-     print '<input type="text" name=';
-     print ($mode[$i]);print "></p>";
+  print '<select name="facultad">';
+      print '<option>Humanas</option>';
+      print '<option>Exactas</option>';
+      print '<option>Ingenieria</option>';
+      print '<option>Economicas</option>';
+      print '<option>AgronomiaVeterinaria</option>';
+      print '</select>';
      print '<label for="Imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
      print '<input name="Agregar" type="submit" value="Agregar">';  
@@ -228,6 +234,7 @@ function input_calendarios(){
 
 function input_noticias(){
 	$i=0;
+  print("<h3> Noticias Facebook</>");
 	$mode = array("link_face");
 	print'<form action="/modificacionDB/insertarDB.php" method="post" ';
     print '<label><h6 style="color:black">';

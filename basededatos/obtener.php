@@ -15,7 +15,7 @@ sec_session_start();
 $table_name = $_GET['tabla'];
 $version = $_GET['version'];
 $dato=null;
-print $table_name;
+print strtoupper($table_name);
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		$cantcol=0;
     // Manejar petición GET
