@@ -63,7 +63,7 @@ sec_session_start();
             	<div>
                     <?php $v1 = $_GET['campo']; 
                     if ($v1!="Home"){
-								echo "<iframe src='basededatos/obtener.php?tabla={$v1}&version=0'name='xxxx' width='100%' height='2000' scrolling='Auto' frameborder='0' id='xxxx'>";
+								echo "<iframe src='basededatos/obtener.php?tabla={$v1}&version=0'name='xxxx' width='100%' height='3000' scrolling='Auto' frameborder='0' id='xxxx'>";
 								}else{
                                 echo "<iframe src='https://lh3.googleusercontent.com/-kioqQVxubo4/AAAAAAAAAAI/AAAAAAAAABs/8NpDR_yuXd8/photo.jpg' marginwidth='100' name='xxxx' width='100%' height='600' scrolling='Auto' frameborder='0' id='xxxx'>";
                 }?>

@@ -39,7 +39,7 @@ function insert_act_cult($titulo, $fecha,$descripcion){
       $limite_kb = 130;
 
       if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
-        $ruta='/var/www/EstudiantesUNRC/imagenes/actculturales/'.$_FILES['imagen']['name'];
+        $ruta='../imagenes/actculturales/'.$_FILES['imagen']['name'];
         $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
         if ($resultado){
             $comando = "INSERT INTO actCulturales ( " .
@@ -50,7 +50,7 @@ function insert_act_cult($titulo, $fecha,$descripcion){
             " VALUES( ?,?,?,?)";
             // Preparar la sentencia
             $sentencia = Database::getInstance()->getDb()->prepare($comando);
-
+            $ruta=mb_strcut($ruta,2,strlen($ruta));
             $sentencia->execute(
                 array(
                     $titulo,
@@ -118,7 +118,7 @@ function insert_becas($nombre,$categoria,$informacion){
         //esta es la ruta donde copiaremos la imagen
         //recuerden que deben crear un directorio con este mismo nombre
         //en el mismo lugar donde se encuentra el archivo subir.php
-        $ruta='/var/www/EstudiantesUNRC/imagenes/becas/'.$_FILES['imagen']['name'];
+        $ruta='../imagenes/becas/'.$_FILES['imagen']['name'];
         $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
         if ($resultado){
             $comando = "INSERT INTO becas ( " .
@@ -129,6 +129,7 @@ function insert_becas($nombre,$categoria,$informacion){
               " VALUES( ?,?,?,?)";
             // Preparar la sentencia
             $sentencia = Database::getInstance()->getDb()->prepare($comando);
+            $ruta=mb_strcut($ruta,2,strlen($ruta));
             $sentencia->execute(
                 array(
                     $nombre,
@@ -202,19 +203,19 @@ function insert_actividades($facultad, $titulo,$fecha,$descripcion){
         //en el mismo lugar donde se encuentra el archivo subir.php
         switch ($facultad) {
               case "Humanas":
-                  $ruta='/var/www/EstudiantesUNRC/imagenes/actividades/hum/'.$_FILES['imagen']['name'];
+                  $ruta='../imagenes/actividades/hum/'.$_FILES['imagen']['name'];
                   break;
               case "Exactas":
-                  $ruta="/var/www/EstudiantesUNRC/imagenes/actividades/exa/".$_FILES['imagen']['name'];
+                  $ruta="../imagenes/actividades/exa/".$_FILES['imagen']['name'];
                   break;
               case "Ingenieria":
-                  $ruta="/var/www/EstudiantesUNRC/imagenes/actividades/ing/".$_FILES['imagen']['name'];
+                  $ruta="../imagenes/actividades/ing/".$_FILES['imagen']['name'];
                   break;
               case "Economicas":
-                  $ruta="/var/www/EstudiantesUNRC/imagenes/actividades/eco/".$_FILES['imagen']['name'];
+                  $ruta="../imagenes/actividades/eco/".$_FILES['imagen']['name'];
                   break;
               case "AgronomiaVeterinaria":
-                  $ruta="/var/www/EstudiantesUNRC/imagenes/actividades/ayv/".$_FILES['imagen']['name'];
+                  $ruta="../imagenes/actividades/ayv/".$_FILES['imagen']['name'];
                   break;
         }
 
@@ -232,7 +233,7 @@ function insert_actividades($facultad, $titulo,$fecha,$descripcion){
             " VALUES( ?,?,?,?,?)";
             // Preparar la sentencia
             $sentencia = Database::getInstance()->getDb()->prepare($comando);
-
+            $ruta=mb_strcut($ruta,2,strlen($ruta));
             $sentencia->execute(
                 array(
                     $facultad,
@@ -274,7 +275,7 @@ function insert_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,
         //esta es la ruta donde copiaremos la imagen
         //recuerden que deben crear un directorio con este mismo nombre
         //en el mismo lugar donde se encuentra el archivo subir.php
-        $ruta='/var/www/EstudiantesUNRC/imagenes/carnets/'.$_FILES['imagen']['name'];
+        $ruta='../imagenes/carnets/'.$_FILES['imagen']['name'];
         $ruta1=null;
         $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
         if ($resultado){
@@ -287,7 +288,7 @@ function insert_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,
             " VALUES( ?,?,?,?,?)";
           // Preparar la sentencia
           $sentencia = Database::getInstance()->getDb()->prepare($comando);
-
+          $ruta=mb_strcut($ruta,2,strlen($ruta));
           $sentencia->execute(
               array(
                   $descr_que_es,
@@ -330,7 +331,7 @@ function insert_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,
             " VALUES( ?,?,?,?,?)";
           // Preparar la sentencia
           $sentencia = Database::getInstance()->getDb()->prepare($comando);
-
+          $ruta=mb_strcut($ruta,2,strlen($ruta));
           $sentencia->execute(
               array(
                   $descr_que_es,
@@ -415,7 +416,7 @@ function insert_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$emai
             " VALUES( ?,?,?,?,?,?)";
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
-
+        $ruta='';
         $sentencia->execute(
             array(
                 $titulo,
@@ -438,7 +439,7 @@ function insert_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$emai
       $limite_kb = 130;
 
       if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
-        $ruta='/var/www/EstudiantesUNRC/imagenes/espacio/'.$_FILES['imagen']['name'];
+        $ruta='../imagenes/espacio/'.$_FILES['imagen']['name'];
         $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
         if ($resultado){
             $comando = "INSERT INTO espacioRedes ( " .
@@ -451,7 +452,7 @@ function insert_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$emai
             " VALUES( ?,?,?,?,?,?)";
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
-
+        $ruta=mb_strcut($ruta,2,strlen($ruta));
         $sentencia->execute(
             array(
                 $titulo,
@@ -479,22 +480,6 @@ function insert_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$emai
         
         return $sentencia;
 }
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
 
 
 function insert_localesAdheridos($nombre,$direccion,$rubro,$descuento){
@@ -533,7 +518,7 @@ function insert_calendarios($facultad){
             " VALUES( ?,?)";
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
-
+        $ruta='';
         $sentencia->execute(
             array(
                 $facultad,
@@ -553,7 +538,7 @@ function insert_calendarios($facultad){
       $limite_kb = 130;
 
       if (in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
-        $ruta='/var/www/EstudiantesUNRC/imagenes/calendarios/'.$_FILES['imagen']['name'];
+        $ruta='../imagenes/calendarios/'.$_FILES['imagen']['name'];
         $resultado = move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
         if ($resultado){
             $comando = "INSERT INTO calendarios ( " .
@@ -562,13 +547,11 @@ function insert_calendarios($facultad){
             " VALUES( ?,?)";
         // Preparar la sentencia
         $sentencia = Database::getInstance()->getDb()->prepare($comando);
-
+        $ruta=mb_strcut($ruta,2,strlen($ruta));
         $sentencia->execute(
             array(
                 $facultad,
-                $ruta
-               
-            )
+                $ruta)
         );
         if($sentencia){
           print "<h3>Carga Exitosa</h3>";

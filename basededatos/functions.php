@@ -4,7 +4,7 @@
  * Representa el la estructura de las metas
  * almacenadas en la base de datos
  */
-require 'Database.php';
+include_once 'Database.php';
 include_once 'mysql_login.php';
 class functions
 {
@@ -23,6 +23,27 @@ class functions
         
         
         $consulta = "SELECT * FROM $table_name;";
+      
+        try {
+            // Preparar sentencia
+            $comando = Database::getInstance()->getDb()->prepare($consulta);
+            // Ejecutar sentencia preparada
+            $comando->execute();
+
+            return $comando->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            return false;
+        }
+
+        
+    }
+
+    public static function getId($table_name,$id)
+    {
+        
+        
+        $consulta = "SELECT * FROM $table_name WHERE id = $id;";
       
         try {
             // Preparar sentencia

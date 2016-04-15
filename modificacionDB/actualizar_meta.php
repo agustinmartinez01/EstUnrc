@@ -41,7 +41,7 @@ sec_session_start();
 
           $meta = $_POST['table_name'];
           $id=$_POST['id'];
-          $array=$_POST['array'];
+          $array=null;
           switch ($meta) {
               case "actCulturales":
                   input_actCulturales($id,$array);
