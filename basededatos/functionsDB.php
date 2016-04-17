@@ -4,9 +4,9 @@
  * Representa el la estructura de las metas
  * almacenadas en la base de datos
  */
-include_once 'Database.php';
+include_once 'Database1.php';
 include_once 'mysql_login.php';
-class functions
+class functionsDB
 {
     function __construct()
     {
@@ -26,7 +26,7 @@ class functions
       
         try {
             // Preparar sentencia
-            $comando = Database::getInstance()->getDb()->prepare($consulta);
+            $comando = Database1::getInstance()->getDb()->prepare($consulta);
             // Ejecutar sentencia preparada
             $comando->execute();
 
@@ -47,7 +47,7 @@ class functions
       
         try {
             // Preparar sentencia
-            $comando = Database::getInstance()->getDb()->prepare($consulta);
+            $comando = Database1::getInstance()->getDb()->prepare($consulta);
             // Ejecutar sentencia preparada
             $comando->execute();
 
@@ -60,6 +60,28 @@ class functions
         
     }
 
+    public static function getFacultad($table_name,$id)
+    {
+        
+        
+        $consulta = "SELECT * FROM $table_name WHERE facultad = $id;";
+      
+        try {
+            // Preparar sentencia
+            $comando = Database1::getInstance()->getDb()->prepare($consulta);
+            // Ejecutar sentencia preparada
+            $comando->execute();
+
+            return $comando->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            return false;
+        }
+
+        
+    }
+
+
 		
     
 
@@ -70,7 +92,7 @@ class functions
 
         try {
             // Preparar sentencia
-            $comando = Database::getInstance()->getDb()->prepare($consulta);
+            $comando = Database1::getInstance()->getDb()->prepare($consulta);
             // Ejecutar sentencia preparada
             $comando->execute();
 

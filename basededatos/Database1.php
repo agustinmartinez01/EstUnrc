@@ -53,11 +53,11 @@ class Database1
     {
         if (self::$pdo == null) {
             self::$pdo = new PDO(
-                'mysql:dbname=' . DATABASE .
-                ';host=' . HOSTNAME .
+                'mysql:dbname=' . DATABASE1 .
+                ';host=' . HOSTNAME1 .
                 ';port:3306;', // Eliminar este elemento si se usa una instalación por defecto
-                USERNAME,
-                PASSWORD,
+                USERNAME1,
+                PASSWORD1,
                 array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
             );
 

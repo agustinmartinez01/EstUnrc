@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-include_once '../basededatos/psl-config.php';   // Needed because functions.php is not included
+include_once '../basededatos/mysql_login.php';   // Needed because functions.php is not included
 
 $mysqli = new mysqli(HOST, USER, PASSWORD, DATABASE);
 //$mysqli1 = new mysqli(HOST, USER, PASSWORD, DATABASE1);

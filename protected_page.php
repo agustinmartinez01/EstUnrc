@@ -32,7 +32,7 @@ sec_session_start();
 				<script type="" src="style/tabla.css"></script> 
     </head>
     <body>
-        <?php if (login_check($mysqli) == true) : ?>
+        <?php if (login_check($mysqli) == true) : $mysqli->close();?>
 				<h1 align="center">Menu de Modificaciones EstudianteUNRC</h1>
         <p>Welcome <?php echo htmlentities($_SESSION['username']); ?>!</p>
         <p>
@@ -49,7 +49,7 @@ sec_session_start();
                 <li><a href="protected_page.php?campo=espacioRedes">Espacio Independiente</a></li>
                 <li><a href="protected_page.php?campo=contactateMails">Banco de Ideas</a></li>
                 <li><a class="hsubs" href="protected_page.php?campo=actividades">Charlas Viajes y Congresos</a></li>
-                <li><a href="protected_page.php?campo=">Más    </a>
+                <li><a href="protected_page.php?campo=Home">Más    </a>
                   <ul class="subs">
                         <li><a class="hsubs" href="protected_page.php?campo=actCulturales">ActividadesCulturales</a></li>
                         <li><a class="hsubs" href="protected_page.php?campo=calendarios">Calendario Academico</a></li>
@@ -63,7 +63,7 @@ sec_session_start();
             	<div>
                     <?php $v1 = $_GET['campo']; 
                     if ($v1!="Home"){
-								echo "<iframe src='basededatos/obtener.php?tabla={$v1}&version=0'name='xxxx' width='100%' height='3000' scrolling='Auto' frameborder='0' id='xxxx'>";
+								echo "<iframe src='basededatos/obtener.php?tabla={$v1}&version=0'name='xxxx' width='100%' height='2000' scrolling='Auto' frameborder='0' id='xxxx'>";
 								}else{
                                 echo "<iframe src='https://lh3.googleusercontent.com/-kioqQVxubo4/AAAAAAAAAAI/AAAAAAAAABs/8NpDR_yuXd8/photo.jpg' marginwidth='100' name='xxxx' width='100%' height='600' scrolling='Auto' frameborder='0' id='xxxx'>";
                 }?>

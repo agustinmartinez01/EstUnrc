@@ -1,7 +1,7 @@
 <?php
 
 
-include_once '../basededatos/Database.php';
+include_once '../basededatos/Database1.php';
 include_once '../basededatos/mysql_login.php';
 //include_once '../modificacionDB/db_connect1.php';
 
@@ -10,14 +10,33 @@ include_once '../basededatos/mysql_login.php';
 
 function borrar($id,$meta)
     {
-        // Sentencia INSERT
-        // Sentencia DELETE
-        $comando = "DELETE FROM ".$meta." WHERE id=?";
+        if ($meta=="calendarios"){
+			$comando = "DELETE FROM ".$meta." WHERE facultad=?";
 
-        // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+	        // Preparar la sentencia
+	        $sentencia = Database1::getInstance()->getDb()->prepare($comando);
 
-        return $sentencia->execute(array($id));
+	        $sentencia->execute(array($id));
+	        if($sentencia){
+	        	return true;
+	        }else{
+	        	return false;
+	        }
 
+		}else{
+			$comando = "DELETE FROM ".$meta." WHERE id=?";
+
+	        // Preparar la sentencia
+	        $sentencia = Database1::getInstance()->getDb()->prepare($comando);
+
+	        $sentencia->execute(array($id));
+	        if($sentencia){
+	        	return true;
+	        }else{
+	        	return false;
+	        }
+
+		}
+        
     }
 

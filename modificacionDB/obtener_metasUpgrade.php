@@ -4,9 +4,9 @@
 function input_actCulturales($id,$array)
 {
     print("<h3> Actividades Culturales</>");
-    require '../basededatos/functions.php';
+    include_once '../basededatos/functionsDB.php';
     $table_name="actCulturales";
-    $shop = functions::getId($table_name,$id);
+    $shop = functionsDB::getId($table_name,$id);
     foreach ($shop as $row): array_map('htmlentities', $row);$cantcol=count($row);
             $mode1[0] =$row['titulo'];
             $mode1[1] =$row['fecha'];
@@ -27,6 +27,7 @@ function input_actCulturales($id,$array)
               print ($mode[$i]);print "></p>";
               
             }//endfor
+    print '<p><img src="../'.$mode1[3].'" alt="Smiley face" height="42" width="42"></p>';
      print '<label for="imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
     print '<input name="Agregar" type="submit" value="Agregar">';  
@@ -41,9 +42,9 @@ function input_actCulturales($id,$array)
 function input_becas($id,$array)
 {
     print("<h3> Becas</>");
-    require '../basededatos/functions.php';
+    include_once '../basededatos/functionsDB.php';
     $table_name="becas";
-    $shop = functions::getId($table_name,$id);
+    $shop = functionsDB::getId($table_name,$id);
     foreach ($shop as $row): array_map('htmlentities', $row);$cantcol=count($row);
             $mode1[0] =$row['nombre'];
             $mode1[1] =$row['informacion'];
@@ -68,6 +69,7 @@ function input_becas($id,$array)
               print ($mode[$i]);print "></p>";
               
             }//endfor
+    print '<p><img src="../'.$mode1[2].'" alt="Smiley face" height="42" width="42"></p>';
     print '<label for="imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
     print '<input name="Agregar" type="submit" value="Agregar">';  
@@ -80,9 +82,9 @@ function input_becas($id,$array)
 }
 function input_actividades($id,$array){
   print("<h3> Charlas Viajes y Congresos</>");
-  require '../basededatos/functions.php';
+  include_once '../basededatos/functionsDB.php';
     $table_name="actividades";
-    $shop = functions::getId($table_name,$id);
+    $shop = functionsDB::getId($table_name,$id);
     foreach ($shop as $row): array_map('htmlentities', $row);$cantcol=count($row);
             $mode1[0] =$row['titulo'];
             $mode1[1] =$row['fecha'];
@@ -110,6 +112,7 @@ function input_actividades($id,$array){
               print ($mode[$i]);print "></p>";
               
             }//endfor
+    print '<p><img src="../'.$mode1[3].'" alt="Smiley face" height="42" width="42"></p>';
     print '<label for="imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
     print '<input name="Agregar" type="submit" value="Agregar">';
@@ -121,9 +124,9 @@ function input_actividades($id,$array){
 
 function input_carnets($id,$array){
   print("<h3> Carnets</>");
-  require '../basededatos/functions.php';
+  include_once '../basededatos/functionsDB.php';
     $table_name="carnets";
-    $shop = functions::getId($table_name,$id);
+    $shop = functionsDB::getId($table_name,$id);
     foreach ($shop as $row): array_map('htmlentities', $row);
             $mode1[0] =$row['descr_que_es'];
             $mode1[1] =$row['descr_como_funciona'];
@@ -145,6 +148,8 @@ function input_carnets($id,$array){
               print ($mode[$i]);print "></p>";
               
             }//endfor
+    print '<p><img src="../'.$mode1[3].'" alt="Smiley face" height="42" width="42"></p>';
+    print '<p><img src="../'.$mode1[4].'" alt="Smiley face" height="42" width="42"></p>';
     print '<label for="Que es">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
     print '<label for="Donde lo Consigo">Imagen:</label>
@@ -158,9 +163,9 @@ function input_carnets($id,$array){
 function input_unrcContactos($id,$array){
   print("<h3> Contactos UNRC</>");
   $i=0;
-  require '../basededatos/functions.php';
+  include_once '../basededatos/functionsDB.php';
     $table_name="unrcContactos";
-    $shop = functions::getId($table_name,$id);
+    $shop = functionsDB::getId($table_name,$id);
     foreach ($shop as $row): array_map('htmlentities', $row);
             $mode1[0] =$row['tipo'];
             $mode1[1] =$row['nombre'];
@@ -193,9 +198,9 @@ function input_unrcContactos($id,$array){
 
 function input_contactateMails($id,$array){
   $i=0;
-  require '../basededatos/functions.php';
+  include_once '../basededatos/functionsDB.php';
     $table_name="contactateMails";
-    $shop = functions::getId($table_name,$id);
+    $shop = functionsDB::getId($table_name,$id);
     foreach ($shop as $row): array_map('htmlentities', $row);
             $mode1[0] =$row['mail'];
             
@@ -221,15 +226,16 @@ function input_contactateMails($id,$array){
 function input_espacioRedes($id,$array){
   print("<h3> Espacio Independiente</>");
   $i=0;
-  require '../basededatos/functions.php';
+  include_once'../basededatos/functionsDB.php';
     $table_name="espacioRedes";
-    $shop = functions::getId($table_name,$id);
+    $shop = functionsDB::getId($table_name,$id);
     foreach ($shop as $row): array_map('htmlentities', $row);
             $mode1[0] =$row['titulo'];
             $mode1[1] =$row['descripcion'];
             $mode1[2] =$row['facebookUrl'];
             $mode1[3] =$row['twitterUrl'];
-            $mode1[4] =$row['email'];   
+            $mode1[4] =$row['email'];
+            $mode1[5] =$row['img_path'];   
           endforeach;
   $mode = array("titulo","descripcion","facebookUrl","twitterUrl","email","img_path");
     print'<form action="/modificacionDB/modificarDB.php" method="post" enctype="multipart/form-data">';
@@ -245,6 +251,7 @@ function input_espacioRedes($id,$array){
               print ($mode[$i]);print "></p>"; 
               
             }//endfor
+    print '<p><img src="../'.$mode1[5].'" alt="Smiley face" height="42" width="42"></p>';
     print '<label for="Imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
     print '<input name="Agregar" type="submit" value="Agregar">';   
@@ -256,9 +263,9 @@ function input_espacioRedes($id,$array){
 
 function input_localesAdheridos($id,$array){
   print("<h3> Locales Adheridos</>");
-  require '../basededatos/functions.php';
+  include_once '../basededatos/functionsDB.hp';
     $table_name="localesAdheridos";
-    $shop = functions::getId($table_name,$id);
+    $shop = functionsDB::getId($table_name,$id);
     foreach ($shop as $row): array_map('htmlentities', $row);
             $mode1[0] =$row['nombre'];
             $mode1[1] =$row['direccion'];
@@ -288,16 +295,19 @@ function input_localesAdheridos($id,$array){
 
 function input_calendarios($id,$array){
   print("<h3> Calendarios Academicos</>");
-  require '../basededatos/functions.php';
+  print("<h6> Solo para modificar el calendario de una Facultad</>");
+  print("<h6> Seleccione la facultad que desea cambiar el calendario</>");
+  include_once '../basededatos/functionsDB.php';
     $table_name="calendarios";
-    $shop = functions::getId($table_name,$id);
+    $shop = functionsDB::getFacultad($table_name,$id);
     foreach ($shop as $row): array_map('htmlentities', $row);
-            $mode1[0] =$row['facultad'];
-            $mode1[1]= $row['img_path'];
+            $mode1[1] = $shop['img_path'];
           endforeach;
-  $i=0;
-  $mode = array("img_path");
-  print'<form action="/modificacionDB/modificarDB.php" method="post" >';
+    $i=0;
+    $mode = array("img_path");
+  
+    
+    print'<form action="/modificacionDB/modificarDB.php" method="post" >';
     print '<select name="facultad">';
       print '<option>Humanas</option>';
       print '<option>Exactas</option>';
@@ -305,6 +315,7 @@ function input_calendarios($id,$array){
       print '<option>Economicas</option>';
       print '<option>AgronomiaVeterinaria</option>';
       print '</select>';
+     //print '<p><img src="../'.$mode1[1].'" alt="Smiley face" height="42" width="42"></p>';
       print '<label for="Imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
     print '<input name="Agregar" type="submit" value="Agregar">';  
@@ -316,9 +327,9 @@ function input_calendarios($id,$array){
 
 function input_noticias($id,$array){
   print("<h3> Noticias Facebook</>");
-  require '../basededatos/functions.php';
+  include_once '../basededatos/functionsDB.php';
     $table_name="fb";
-    $shop = functions::getId($table_name,$id);
+    $shop = functionsDB::getId($table_name,$id);
     foreach ($shop as $row): array_map('htmlentities', $row);
             $mode1[0] =$row['facebook_path'];
           endforeach;

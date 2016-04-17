@@ -1,7 +1,11 @@
 <?php
-require '../basededatos/Database.php';
+require '../basededatos/Database1.php';
 include_once '../basededatos/mysql_login.php';
-//include_once '../modificacionDB/db_connect1.php';
+include_once '../includes/db_connect.php';
+include_once '../includes/functions.php';
+
+
+sec_session_start();
 
 
 
@@ -16,10 +20,10 @@ function modif_act_cult($titulo, $fecha,$descripcion, $img_path,$id,$array)
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
-        $cmd->execute(array($titulo, $fecha,$descripcion, $ruta, $id));
+        $cmd->execute(array($titulo, $fecha,$descripcion, $img_path, $id));
         if($cmd){
           print "<h3>Carga Exitosa</h3>";
         }else{
@@ -41,7 +45,7 @@ function modif_act_cult($titulo, $fecha,$descripcion, $img_path,$id,$array)
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
         $cmd->execute(array($titulo, $fecha,$descripcion, $ruta, $id));
@@ -72,7 +76,7 @@ function modif_unrcContactos($tipo,$nombre,$telefono,$mail,$id){
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
         $cmd->execute(array($tipo,$nombre,$telefono,$mail,$id));
@@ -93,10 +97,10 @@ function modif_becas($nombre, $categoria,$informacion, $img_path,$id,$array){
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
-        $cmd->execute(array($nombre, $categoria,$informacion, $ruta,$id));
+        $cmd->execute(array($nombre, $categoria,$informacion, $img_path,$id));
         if($cmd){
           print "<h3>Carga Exitosa</h3>";
         }else{
@@ -118,7 +122,7 @@ function modif_becas($nombre, $categoria,$informacion, $img_path,$id,$array){
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
         $cmd->execute(array($nombre, $categoria,$informacion, $ruta,$id));
@@ -150,10 +154,10 @@ function modif_actividades($facultad, $titulo,$fecha,$descripcion, $img_path,$id
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
-        $cmd->execute(array($facultad, $titulo,$fecha,$descripcion, $ruta,$id));
+        $cmd->execute(array($facultad, $titulo,$fecha,$descripcion, $img_path,$id));
         if($cmd){
           print "<h3>Carga Exitosa</h3>";
         }else{
@@ -175,7 +179,7 @@ function modif_actividades($facultad, $titulo,$fecha,$descripcion, $img_path,$id
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
         $cmd->execute(array($facultad, $titulo,$fecha,$descripcion, $ruta,$id));
@@ -222,10 +226,10 @@ function modif_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,$
                 "WHERE id=?";
 
             // Preparar la sentencia
-            $cmd = Database::getInstance()->getDb()->prepare($consulta);
+            $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
             // Relacionar y ejecutar la sentencia
-            $cmd->execute(array($descr_que_es,$descr_como_funciona,$descr_donde_consigo,$ruta,$ruta1,$id));
+            $cmd->execute(array($descr_que_es,$descr_como_funciona,$descr_donde_consigo,$ruta,$img_path_donde_consigo,$id));
             if($cmd){
               print "<h3>Carga Exitosa</h3>";
             }else{
@@ -259,7 +263,7 @@ function modif_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,$
               "WHERE id=?";
 
           // Preparar la sentencia
-          $cmd = Database::getInstance()->getDb()->prepare($consulta);
+          $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
           // Relacionar y ejecutar la sentencia
           $cmd->execute(array($descr_que_es,$descr_como_funciona,$descr_donde_consigo,$ruta,$ruta1,$id));
@@ -283,7 +287,7 @@ function modif_categorias($titulo,$id,$array){
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
         $cmd->execute(array($titulo,$id));
@@ -301,7 +305,7 @@ function modif_contactateMails($mail,$id,$array){
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
         $cmd->execute(array($mail,$id));
@@ -322,10 +326,10 @@ function modif_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$email
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
-        $cmd->execute(array($titulo,$descripcion,$facebookUrl,$twitterUrl,$email,$ruta,$id));
+        $cmd->execute(array($titulo,$descripcion,$facebookUrl,$twitterUrl,$email,$img_path,$id));
         if($cmd){
           print "<h3>Carga Exitosa</h3>";
         }else{
@@ -347,7 +351,7 @@ function modif_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$email
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
         $cmd->execute(array($titulo,$descripcion,$facebookUrl,$twitterUrl,$email,$ruta,$id));
@@ -377,7 +381,7 @@ function modif_localesAdheridos($nombre,$direccion,$rubro,$descuento,$id,$array)
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
         $cmd->execute(array($nombre,$direccion,$rubro,$descuento,$id));
@@ -398,10 +402,10 @@ function modif_calendarios($facultad,$img_path,$id,$array){
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
-        $cmd->execute(array($facultad,$ruta,$id));
+        $cmd->execute(array($facultad,$img_path,$id));
         if($cmd){
           print "<h3>Carga Exitosa</h3>";
         }else{
@@ -424,7 +428,7 @@ function modif_calendarios($facultad,$img_path,$id,$array){
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
         $cmd->execute(array($facultad,$ruta,$id));
@@ -456,7 +460,7 @@ function modif_noticias($link_face,$id,$array){
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
         $cmd->execute(array($link_face,$id));
@@ -474,7 +478,7 @@ function modif_contactateconNosotros($mail,$id,$array){
             "WHERE id=?";
 
         // Preparar la sentencia
-        $cmd = Database::getInstance()->getDb()->prepare($consulta);
+        $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
         $cmd->execute(array($mail,$id));
@@ -489,107 +493,118 @@ function modif_contactateconNosotros($mail,$id,$array){
 
 
 ?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Menu</title>
+        <title>Modificar</title>
+        <link rel="stylesheet" href="styles/main.css" />
         <link rel="stylesheet" href="styles/main.css" />
         <link href="menucss/css/layout.css" rel="stylesheet" type="text/css" />
         <link href="menucss/css/menu.css" rel="stylesheet" type="text/css" />
                 <script type="" src="style/tabla.css"></script> 
     </head>
     <body>
-        <?php 
-            $tabla = $_POST['table_name'];
-            $id=$_POST['id'];
-            $array=$_POST['array'];
-            switch ($tabla) {
-              case "actCulturales":
-                    $titulo=$_POST['titulo'];
-                    $fecha=$_POST['fecha'];
-                    $descripcion=$_POST['descripcion'];
-                    $img_path=$_POST['img_path'];
-                    modif_act_cult($titulo, $fecha,$descripcion, $img_path,$id,$array);
-                  break;
-            
-
-              case "becas":
-                    $nombre=$_POST['nombre'];
-                    $categoria=$_POST['categoria'];
-                    $informacion=$_POST['informacion'];
-                    $img_path=$_POST['img_path'];
-                    modif_becas($nombre, $categoria,$informacion, $img_path,$id,$array);
-                  break;
-              case "unrcContactos":
-                  $tipo=$_POST['tipo'];
-                  $nombre=$_POST['nombre'];
-                  $telefono=$_POST['telefono'];
-                  $mail=$_POST['mail'];
-                  modif_unrcContactos($tipo,$nombre,$telefono,$mail,$id);
-                  break;
-              case "actividades":
-                    $facultad=$_POST['facultad'];
-                    $titulo=$_POST['titulo'];
-                    $fecha=$_POST['fecha'];
-                    $descripcion=$_POST['descripcion'];
-                    $img_path=$_POST['img_path'];
-                    modif_actividades($facultad, $titulo,$fecha,$descripcion, $img_path,$id,$array);
-                  break;
-              case "carnets":
-                    $descr_que_es=$_POST['descr_que_es'];
-                    $descr_como_funciona=$_POST['descr_como_funciona'];
-                    $descr_donde_consigo=$_POST['descr_donde_consigo'];
-                    $img_path_que_es=$_POST['img_path_que_es'];
-                    $img_path_donde_consigo=$_POST['img_path_donde_consigo'];
-                    modif_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,$img_path_que_es,$img_path_donde_consigo,$id,$array);
-                  break;
-              case "categorias":
-                  $titulo=$_POST['titulo'];
-                  modif_categorias($titulo,$id,$array);
-                  break;
-              case "contactateMails":
-                  $mail=$_POST['mail'];
-                  modif_contactateMails($mail,$id,$array);
-                  break;
-              case "espacioRedes":
-                  $titulo=$_POST['titulo'];
-                  $descripcion=$_POST['descripcion'];
-                  $facebookUrl=$_POST['facebookUrl'];
-                  $twitterUrl=$_POST['twitterUrl'];
-                  $email=$_POST['email'];
-                  $img_path=$_POST['img_path'];
-                  modif_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$email,$img_path,$id,$array);
-                  break;
-              case "localesAdheridos":
-                  $nombre=$_POST['nombre'];
-                  $direccion=$_POST['direccion'];
-                  $rubro=$_POST['rubro'];
-                  $descuento=$_POST['descuento'];
-                  modif_localesAdheridos($nombre,$direccion,$rubro,$descuento,$id,$array);
-                  break;
-              case "calendarios":
-                  array("img_path");
-                  $img_path=$_POST['img_path'];
-                  $facultad=$_POST['facultad'];
-                  modif_calendarios($facultad,$img_path,$id,$array);
-                  break;
-              case "noticias":
-                  $link_face=$_POST['link_face'];
-                  modif_noticias($link_face,$id,$array);
-                  break;
-              case "contactateconNosotros":
-                  $mail=$_POST['mail'];
-                  modif_contactateconNosotros($mail,$id,$array);
-                  break;
-              case "mapas":
+        <?php if (login_check($mysqli) == true) : ?>
+              
+                  <p>
+                      <?php 
+                  $tabla = $_POST['table_name'];
+                  $id=$_POST['id'];
+                  $array=$_POST['array'];
+                  switch ($tabla) {
+                    case "actCulturales":
+                          $titulo=$_POST['titulo'];
+                          $fecha=$_POST['fecha'];
+                          $descripcion=$_POST['descripcion'];
+                          $img_path=$_POST['img_path'];
+                          modif_act_cult($titulo, $fecha,$descripcion, $img_path,$id,$array);
+                        break;
                   
-                  break;
-            }
-          
 
-        ?>
-    
+                    case "becas":
+                          $nombre=$_POST['nombre'];
+                          $categoria=$_POST['categoria'];
+                          $informacion=$_POST['informacion'];
+                          $img_path=$_POST['img_path'];
+                          modif_becas($nombre, $categoria,$informacion, $img_path,$id,$array);
+                        break;
+                    case "unrcContactos":
+                        $tipo=$_POST['tipo'];
+                        $nombre=$_POST['nombre'];
+                        $telefono=$_POST['telefono'];
+                        $mail=$_POST['mail'];
+                        modif_unrcContactos($tipo,$nombre,$telefono,$mail,$id);
+                        break;
+                    case "actividades":
+                          $facultad=$_POST['facultad'];
+                          $titulo=$_POST['titulo'];
+                          $fecha=$_POST['fecha'];
+                          $descripcion=$_POST['descripcion'];
+                          $img_path=$_POST['img_path'];
+                          modif_actividades($facultad, $titulo,$fecha,$descripcion, $img_path,$id,$array);
+                        break;
+                    case "carnets":
+                          $descr_que_es=$_POST['descr_que_es'];
+                          $descr_como_funciona=$_POST['descr_como_funciona'];
+                          $descr_donde_consigo=$_POST['descr_donde_consigo'];
+                          $img_path_que_es=$_POST['img_path_que_es'];
+                          $img_path_donde_consigo=$_POST['img_path_donde_consigo'];
+                          modif_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,$img_path_que_es,$img_path_donde_consigo,$id,$array);
+                        break;
+                    case "categorias":
+                        $titulo=$_POST['titulo'];
+                        modif_categorias($titulo,$id,$array);
+                        break;
+                    case "contactateMails":
+                        $mail=$_POST['mail'];
+                        modif_contactateMails($mail,$id,$array);
+                        break;
+                    case "espacioRedes":
+                        $titulo=$_POST['titulo'];
+                        $descripcion=$_POST['descripcion'];
+                        $facebookUrl=$_POST['facebookUrl'];
+                        $twitterUrl=$_POST['twitterUrl'];
+                        $email=$_POST['email'];
+                        $img_path=$_POST['img_path'];
+                        modif_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$email,$img_path,$id,$array);
+                        break;
+                    case "localesAdheridos":
+                        $nombre=$_POST['nombre'];
+                        $direccion=$_POST['direccion'];
+                        $rubro=$_POST['rubro'];
+                        $descuento=$_POST['descuento'];
+                        modif_localesAdheridos($nombre,$direccion,$rubro,$descuento,$id,$array);
+                        break;
+                    case "calendarios":
+                        array("img_path");
+                        $img_path=$_POST['img_path'];
+                        $facultad=$_POST['facultad'];
+                        modif_calendarios($facultad,$img_path,$id,$array);
+                        break;
+                    case "noticias":
+                        $link_face=$_POST['link_face'];
+                        modif_noticias($link_face,$id,$array);
+                        break;
+                    case "contactateconNosotros":
+                        $mail=$_POST['mail'];
+                        modif_contactateconNosotros($mail,$id,$array);
+                        break;
+                    case "mapas":
+                        
+                        break;
+                  }
+                
+
+              ?>
+                  </p>
+                  <p>Return to <a href="index.php">login page</a></p>
+        <?php else : ?>
+            <p>
+                <span class="error">You are not authorized to access this page.</span> Please <a href="../index.php">login</a>.
+            </p>
+        <?php endif; ?>
     </body>
 </html>
-

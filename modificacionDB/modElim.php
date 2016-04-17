@@ -1,11 +1,17 @@
 <?php
 	include_once 'borrarDB.php';
 	include_once 'obtener_metasUpgrade.php';
-	include_once '../includes/functions.php';
+	//include_once '../includes/functions.php';
 	     if (isset($_POST['Eliminar'])) {
 	          $id=$_POST['id'];
 	          $tabla=$_POST['table_name'];
-	          borrar($id,$tabla);
+	          if (borrar($id,$tabla)){
+	          		print '<h2>Borrado Exitoso</h2>';
+	          		print ''.$tabla.'';
+	          		print ''.$id.'';
+	          }else{
+	          		print 'Borrado Fallo';
+	          };
 
 	     } 
 	     if (isset($_POST['Modificar'])) {

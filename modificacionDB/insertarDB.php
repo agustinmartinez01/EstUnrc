@@ -1,7 +1,11 @@
 <?php
-require '../basededatos/Database.php';
+require '../basededatos/Database1.php';
 include_once '../basededatos/mysql_login.php';
+include_once '../includes/db_connect.php';
+include_once '../includes/functions.php';
 
+
+sec_session_start();
 
 
 
@@ -17,7 +21,7 @@ function insert_act_cult($titulo, $fecha,$descripcion){
             " img_path)" .
             " VALUES( ?,?,?,?)";
         // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+        $sentencia = Database1::getInstance()->getDb()->prepare($comando);
 
         $sentencia->execute(
             array(
@@ -49,7 +53,7 @@ function insert_act_cult($titulo, $fecha,$descripcion){
             " img_path)" .
             " VALUES( ?,?,?,?)";
             // Preparar la sentencia
-            $sentencia = Database::getInstance()->getDb()->prepare($comando);
+            $sentencia = Database1::getInstance()->getDb()->prepare($comando);
             $ruta=mb_strcut($ruta,2,strlen($ruta));
             $sentencia->execute(
                 array(
@@ -94,7 +98,7 @@ function insert_becas($nombre,$categoria,$informacion){
               " img_path)" .
               " VALUES( ?,?,?,?)";
             // Preparar la sentencia
-            $sentencia = Database::getInstance()->getDb()->prepare($comando);
+            $sentencia = Database1::getInstance()->getDb()->prepare($comando);
             $sentencia->execute(
                 array(
                     $nombre,
@@ -128,7 +132,7 @@ function insert_becas($nombre,$categoria,$informacion){
               " img_path)" .
               " VALUES( ?,?,?,?)";
             // Preparar la sentencia
-            $sentencia = Database::getInstance()->getDb()->prepare($comando);
+            $sentencia = Database1::getInstance()->getDb()->prepare($comando);
             $ruta=mb_strcut($ruta,2,strlen($ruta));
             $sentencia->execute(
                 array(
@@ -174,7 +178,7 @@ function insert_actividades($facultad, $titulo,$fecha,$descripcion){
             " img_path)" .
             " VALUES( ?,?,?,?,?)";
             // Preparar la sentencia
-            $sentencia = Database::getInstance()->getDb()->prepare($comando);
+            $sentencia = Database1::getInstance()->getDb()->prepare($comando);
 
             $sentencia->execute(
                 array(
@@ -232,7 +236,7 @@ function insert_actividades($facultad, $titulo,$fecha,$descripcion){
             " img_path)" .
             " VALUES( ?,?,?,?,?)";
             // Preparar la sentencia
-            $sentencia = Database::getInstance()->getDb()->prepare($comando);
+            $sentencia = Database1::getInstance()->getDb()->prepare($comando);
             $ruta=mb_strcut($ruta,2,strlen($ruta));
             $sentencia->execute(
                 array(
@@ -287,7 +291,7 @@ function insert_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,
             " img_path_donde_consigo)" .
             " VALUES( ?,?,?,?,?)";
           // Preparar la sentencia
-          $sentencia = Database::getInstance()->getDb()->prepare($comando);
+          $sentencia = Database1::getInstance()->getDb()->prepare($comando);
           $ruta=mb_strcut($ruta,2,strlen($ruta));
           $sentencia->execute(
               array(
@@ -330,7 +334,7 @@ function insert_carnets($descr_que_es,$descr_como_funciona,$descr_donde_consigo,
             " img_path_donde_consigo)" .
             " VALUES( ?,?,?,?,?)";
           // Preparar la sentencia
-          $sentencia = Database::getInstance()->getDb()->prepare($comando);
+          $sentencia = Database1::getInstance()->getDb()->prepare($comando);
           $ruta=mb_strcut($ruta,2,strlen($ruta));
           $sentencia->execute(
               array(
@@ -367,7 +371,7 @@ function insert_categorias($titulo){
             "titulo)" .
             "  VALUES(?)";
         // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+        $sentencia = Database1::getInstance()->getDb()->prepare($comando);
 
         $sentencia->execute(
             array(
@@ -387,7 +391,7 @@ function insert_contactateMails($mail){
             "mail)" .
             "  VALUES(?)";
         // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+        $sentencia = Database1::getInstance()->getDb()->prepare($comando);
 
         $sentencia->execute(
             array(
@@ -415,7 +419,7 @@ function insert_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$emai
             " img_path)" .
             " VALUES( ?,?,?,?,?,?)";
         // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+        $sentencia = Database1::getInstance()->getDb()->prepare($comando);
         $ruta='';
         $sentencia->execute(
             array(
@@ -451,7 +455,7 @@ function insert_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$emai
             " img_path)" .
             " VALUES( ?,?,?,?,?,?)";
         // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+        $sentencia = Database1::getInstance()->getDb()->prepare($comando);
         $ruta=mb_strcut($ruta,2,strlen($ruta));
         $sentencia->execute(
             array(
@@ -490,7 +494,7 @@ function insert_localesAdheridos($nombre,$direccion,$rubro,$descuento){
             " descuento)" .
             " VALUES( ?,?,?,?)";
         // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+        $sentencia = Database1::getInstance()->getDb()->prepare($comando);
 
         $sentencia->execute(
             array(
@@ -517,7 +521,7 @@ function insert_calendarios($facultad){
             " img_path)" .
             " VALUES( ?,?)";
         // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+        $sentencia = Database1::getInstance()->getDb()->prepare($comando);
         $ruta='';
         $sentencia->execute(
             array(
@@ -546,7 +550,7 @@ function insert_calendarios($facultad){
             " img_path)" .
             " VALUES( ?,?)";
         // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+        $sentencia = Database1::getInstance()->getDb()->prepare($comando);
         $ruta=mb_strcut($ruta,2,strlen($ruta));
         $sentencia->execute(
             array(
@@ -582,7 +586,7 @@ function insert_noticias($link_face){
             "link_face)" .
             "  VALUES(?)";
         // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+        $sentencia = Database1::getInstance()->getDb()->prepare($comando);
 
         $sentencia->execute(
             array(
@@ -602,7 +606,7 @@ function insert_fb($facebook_path){
             "facebook_path)" .
             "  VALUES(?)";
         // Preparar la sentencia
-        $sentencia = Database::getInstance()->getDb()->prepare($comando);
+        $sentencia = Database1::getInstance()->getDb()->prepare($comando);
 
         $sentencia->execute(
             array(
@@ -632,15 +636,9 @@ function insert_fb($facebook_path){
     </head>
     <body>
         <?php 
+          if (login_check($mysqli) == true) {
             $tabla = $_POST['table_name'];
-            /*if($tabla=="actCulturales"){
-                $titulo=$_POST['titulo'];
-                $fecha=$_POST['fecha'];
-                $descripcion=$_POST['descripcion'];
-                $img_path=$_POST['img_path'];
-                insert_act_cult($titulo, $fecha,$descripcion, $img_path);
-
-            }*/
+            
             switch ($tabla) {
               case "actCulturales":
                     $titulo=$_POST['titulo'];
@@ -698,7 +696,7 @@ function insert_fb($facebook_path){
                   break;
               case "calendarios":
                   $facultad=$_POST['facultad'];
-                 //$img_path=$_POST['img_path'];
+                   //$img_path=$_POST['img_path'];
                   insert_calendarios($facultad);
                   break;
               case "noticias":
@@ -720,7 +718,11 @@ function insert_fb($facebook_path){
                 insert_fb($facebook_path);
                 break;
             }
-          
+          }else {
+
+            print '<p>
+                <span class="error">You are not authorized to access this page.</span> Please <a href="../index.php">login</a>.
+            </p>';}
 
         ?>
     
