@@ -5,6 +5,9 @@
 	     if (isset($_POST['Eliminar'])) {
 	          $id=$_POST['id'];
 	          $tabla=$_POST['table_name'];
+	          if ($table_name=="calendarios"){
+	          	$id=$_POST['facultad'];
+	          }
 	          if (borrar($id,$tabla)){
 	          		print '<h2>Borrado Exitoso</h2>';
 	          		print ''.$tabla.'';
@@ -54,7 +57,8 @@
 		                  
 		                  break;
 		              case "calendarios":
-		                  input_calendarios($id,$array,$img_path);
+		              	$id=$_POST['facultad'];
+		                  input_calendarios($id,$img_path);
 		                  
 		                  break;
 		              case "fb":

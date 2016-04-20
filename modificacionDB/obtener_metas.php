@@ -14,12 +14,16 @@ function input_actCulturales()
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input type="text" name=';
-              print ($mode[$i]);print "></p>";
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>'; 
+              
               
             }//endfor
+            print '<p></p>'; 
     print '<label for="imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
+    print '<p></p>'; 
     print '<input name="Agregar" type="submit" value="Agregar">';  
     print '<input type="hidden" name="table_name" value="actCulturales">';      
     print '</form>';
@@ -38,10 +42,12 @@ function imput_unrcContactos(){
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input type="text" name=';
-              print ($mode[$i]);print "></p>";
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>'; 
               
             }//endfor
+    print '<p></p>'; 
     print '<input name="Agregar" type="submit" value="Agregar">';  
     print '<input type="hidden" name="table_name" value="unrcContactos">';      
     print '</form>';
@@ -65,12 +71,15 @@ function input_becas()
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input type="text" name=';
-              print ($mode[$i]);print "></p>";
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>'; 
               
             }//endfor
+    print '<p></p>'; 
     print '<label for="imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
+    print '<p></p>'; 
     print '<input name="Agregar" type="submit" value="Agregar">';  
     print '<input type="hidden" name="table_name" value="becas">';      
     print '</form>';
@@ -96,12 +105,15 @@ function input_actividades(){
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input type="text" name=';
-              print ($mode[$i]);print "></p>";
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>'; 
               
             }//endfor
+            print '<p></p>'; 
     print '<label for="imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
+    print '<p></p>'; 
     print '<input name="Agregar" type="submit" value="Agregar">';
     print '<input type="hidden" name="table_name" value="actividades">';         
     print '</form>';
@@ -119,14 +131,17 @@ function input_carnets(){
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input type="text" name=';
-              print ($mode[$i]);print "></p>";
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>'; 
               
             }//endfor
+            print '<p></p>'; 
     print '<label for="Que es">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
     print '<label for="Donde lo Consigo">Imagen:</label>
           <input type="file" name="imagen1" id="imagen1" />';
+    print '<p></p>'; 
     print '<input name="Agregar" type="submit" value="Agregar">';
     print '<input type="hidden" name="table_name" value="carnets">';         
     print '</form>';
@@ -142,8 +157,10 @@ function input_categorias(){
     print '<label for=';
     print $mode[$i];
     print'></label>';
-    print '<input type="text" name=';
-    print ($mode[$i]);print "></p>";
+    print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>'; 
+              print '<p></p>'; 
     print '<input name="Agregar" type="submit" value="Agregar">';    
     print '<input type="hidden" name="table_name" value="categorias">';     
     print '</form>';            
@@ -163,7 +180,8 @@ function input_contactateMails(){
     print $mode[$i];
     print'></label>';
     print '<input type="text" name=';
-    print ($mode[$i]);print "></p>";  
+    print ($mode[$i]);print "></p>"; 
+    print '<p></p>';  
     print '<input name="Agregar" type="submit" value="Agregar">';
     print '<input type="hidden" name="table_name" value="contactateMails">';         
     print '</form>';
@@ -181,12 +199,15 @@ function input_espacioRedes(){
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input type="text"  style="width:500px" style="height:500px" name=';
-              print ($mode[$i]);print "></p>";
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>'; 
               
             }//endfor
+            print '<p></p>'; 
     print '<label for="Imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
+    print '<p></p>'; 
     print '<input name="Agregar" type="submit" value="Agregar">';   
     print '<input type="hidden" name="table_name" value="espacioRedes">';      
     print '</form>';
@@ -204,10 +225,12 @@ function input_localesAdheridos(){
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input type="text" name=';
-              print ($mode[$i]);print "></p>";
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>'; 
               
             }//endfor
+            print '<p></p>'; 
     print '<input name="Agregar" type="submit" value="Agregar">'; 
     print '<input type="hidden" name="table_name" value="localesAdheridos">';        
     print '</form>';
@@ -227,6 +250,7 @@ function input_calendarios(){
       print '</select>';
      print '<label for="Imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
+     print '<p></p>'; 
      print '<input name="Agregar" type="submit" value="Agregar">';  
      print '<input type="hidden" name="table_name" value="calendarios">';       
      print '</form>';    
@@ -246,6 +270,7 @@ function input_noticias(){
     print'></label>';
     print '<input type="text" name=';
     print ($mode[$i]);print "></p>";
+    print '<p></p>'; 
     print '<input name="Agregar" type="submit" value="Agregar">';
     print '<input type="hidden" name="table_name" value="noticias">';         
     print '</form>'; 
@@ -267,6 +292,7 @@ function input_mapas(){
     print'></label>';
     print '<input type="text" name=';
     print ($mode[$i]);print "></p>";
+    print '<p></p>'; 
     print '<input name="Agregar" type="submit" value="Agregar">';
     print '<input type="hidden" name="table_name" value="mapas">';        
     print '</form>';          
@@ -284,8 +310,10 @@ function input_fb(){
     print '<label for=';
     print $mode[$i];
     print'></label>';
-    print '<input type="text" name=';
-    print ($mode[$i]);print "></p>";  
+    print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>'; 
+    print '<p></p>'; 
     print '<input name="Agregar" type="submit" value="Agregar">'; 
     print '<input type="hidden" name="table_name" value="fb">';       
     print '</form>';

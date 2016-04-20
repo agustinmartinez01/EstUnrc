@@ -399,13 +399,13 @@ function modif_calendarios($facultad,$img_path,$id,$array){
       $ruta="";
           $consulta = "UPDATE calendarios" .
             " SET facultad=?, img_path=?" .
-            "WHERE id=?";
+            "WHERE facultad=?";
 
         // Preparar la sentencia
         $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
-        $cmd->execute(array($facultad,$img_path,$id));
+        $cmd->execute(array($facultad,$img_path,$facultad));
         if($cmd){
           print "<h3>Carga Exitosa</h3>";
         }else{
@@ -425,13 +425,13 @@ function modif_calendarios($facultad,$img_path,$id,$array){
         if ($resultado){
             $consulta = "UPDATE calendarios" .
             " SET facultad=?, img_path=?" .
-            "WHERE id=?";
+            "WHERE facultad=?";
 
         // Preparar la sentencia
         $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
-        $cmd->execute(array($facultad,$ruta,$id));
+        $cmd->execute(array($facultad,$ruta,$facultad));
         if($cmd){
           print "<h3>Carga Exitosa</h3>";
         }else{
@@ -582,7 +582,7 @@ function modif_contactateconNosotros($mail,$id,$array){
                         array("img_path");
                         $img_path=$_POST['img_path'];
                         $facultad=$_POST['facultad'];
-                        modif_calendarios($facultad,$img_path,$id,$array);
+                        modif_calendarios($facultad,$img_path);
                         break;
                     case "noticias":
                         $link_face=$_POST['link_face'];
