@@ -320,7 +320,7 @@ function modif_contactateMails($mail,$id,$array){
 function modif_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$email,$img_path,$id,$array){
   if ($_FILES["imagen"]["error"] > 0){
       echo "No subio Foto!";
-      $ruta="";
+      $ruta=$img_path;
           $$consulta = "UPDATE espacioRedes" .
             " SET titulo=?, descripcion=?, facebookUrl=?, twitterUrl=?, email=? ,img_path=? " .
             "WHERE id=?";
@@ -329,7 +329,7 @@ function modif_espacioRedes($titulo,$descripcion,$facebookUrl,$twitterUrl,$email
         $cmd = Database1::getInstance()->getDb()->prepare($consulta);
 
         // Relacionar y ejecutar la sentencia
-        $cmd->execute(array($titulo,$descripcion,$facebookUrl,$twitterUrl,$email,$img_path,$id));
+        $cmd->execute(array($titulo,$descripcion,$facebookUrl,$twitterUrl,$email,$ruta,$id));
         if($cmd){
           print "<h3>Carga Exitosa</h3>";
         }else{

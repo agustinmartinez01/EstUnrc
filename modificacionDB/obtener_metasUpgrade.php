@@ -15,7 +15,7 @@ function input_actCulturales($id,$array)
           endforeach;
     $mode = array("titulo", "fecha", "descripcion", "img_path");
     print'<form action="/modificacionDB/modificarDB.php" method="post" enctype="multipart/form-data" >';
-      for ($i = 0; $i <= 3; $i++) {
+      for ($i = 0; $i <3; $i++) {
               print '<label><h6 style="color:black">';
               print $mode[$i];
               print '</h6></label>' ;
@@ -23,11 +23,15 @@ function input_actCulturales($id,$array)
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input value='.$mode1[$i].' type="text" name=';
-              print ($mode[$i]);print "></p>";
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>';
+              print "></p>";
+              print '<input type="hidden" name="img_path" value='.$mode1[3].'>';
               
             }//endfor
     print '<p><img src="../'.$mode1[3].'" alt="Smiley face" height="42" width="42"></p>';
+     
      print '<label for="imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
     print '<input name="Agregar" type="submit" value="Agregar">';  
@@ -39,7 +43,7 @@ function input_actCulturales($id,$array)
     
 }
 
-function input_becas($id,$array)
+function input_becas($id,$array,$img_path)
 {
     print("<h3> Becas</>");
     include_once '../basededatos/functionsDB.php';
@@ -65,8 +69,12 @@ function input_becas($id,$array)
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input value='.$mode1[$i].' type="text" name=';
-              print ($mode[$i]);print "></p>";
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>';
+              print '<input type="hidden" name="img_path" value='.$mode1[2].'>';
+              //print '<input value="'.$mode1[$i].'"" type="textarea" name=';
+              //print ($mode[$i]);print "></p>";
               
             }//endfor
     print '<p><img src="../'.$mode1[2].'" alt="Smiley face" height="42" width="42"></p>';
@@ -80,7 +88,7 @@ function input_becas($id,$array)
     
     
 }
-function input_actividades($id,$array){
+function input_actividades($id,$array,$img_path){
   print("<h3> Charlas Viajes y Congresos</>");
   include_once '../basededatos/functionsDB.php';
     $table_name="actividades";
@@ -108,14 +116,18 @@ function input_actividades($id,$array){
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input value="'.$mode1[$i].'" type="text" name=';
-              print ($mode[$i]);print "></p>";
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>';
+              print '<input type="hidden" name="img_path" value='.$mode1[3].'>';
               
             }//endfor
     print '<p><img src="../'.$mode1[3].'" alt="Smiley face" height="42" width="42"></p>';
+   
     print '<label for="imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
     print '<input name="Agregar" type="submit" value="Agregar">';
+
     print '<input type="hidden" name="table_name" value="actividades">'; 
     print '<input type="hidden" name="id" value='.$id.'>';  
     print '<input type="hidden" name="array" value='.$array.'>';        
@@ -144,10 +156,13 @@ function input_carnets($id,$array){
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input value="'.$mode1[$i].'" type="text" name=';
-              print ($mode[$i]);print "></p>";
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>';}
+              print '<input type="hidden" name="img_path_que_es" value='.$mode1[3].'>';
+              print '<input type="hidden" name="img_path_donde_consigo" value='.$mode1[4].'>';
               
-            }//endfor
+          //  }//endfor
     print '<p><img src="../'.$mode1[3].'" alt="Smiley face" height="42" width="42"></p>';
     print '<p><img src="../'.$mode1[4].'" alt="Smiley face" height="42" width="42"></p>';
     print '<label for="Que es">Imagen:</label>
@@ -182,11 +197,11 @@ function input_unrcContactos($id,$array){
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input value="'.$mode1[$i].'" type="text" name=';
-              print ($mode[$i]);print "></p>";
-              
-            }//endfor
-
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>';
+            }          
+    print '<p></p>';
     print '<input name="Agregar" type="submit" value="Agregar">';
     print '<input type="hidden" name="table_name" value="unrcContactos">';  
     print '<input type="hidden" name="id" value='.$id.'>';  
@@ -214,8 +229,9 @@ function input_contactateMails($id,$array){
     print '<label for=';
     print $mode[$i];
     print'></label>';
-    print '<input value="'.$mode1[$i].'" type="text" name=';
-              print ($mode[$i]);print "></p>"; 
+    print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>';
     print '<input name="Agregar" type="submit" value="Agregar">';
     print '<input type="hidden" name="table_name" value="contactateMails">';  
     print '<input type="hidden" name="id" value='.$id.'>';  
@@ -223,7 +239,7 @@ function input_contactateMails($id,$array){
     print '</form>';
 }
 
-function input_espacioRedes($id,$array){
+function input_espacioRedes($id,$img_path){
   print("<h3> Espacio Independiente</>");
   $i=0;
   include_once'../basededatos/functionsDB.php';
@@ -247,11 +263,13 @@ function input_espacioRedes($id,$array){
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input value="'.$mode1[$i].'" type="text" name=';
-              print ($mode[$i]);print "></p>"; 
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>'; 
+              print '<input type="hidden" name="img_path" value='.$mode1[5].'>';
               
             }//endfor
-    print '<p><img src="../'.$mode1[5].'" alt="Smiley face" height="42" width="42"></p>';
+    
     print '<label for="Imagen">Imagen:</label>
           <input type="file" name="imagen" id="imagen" />';
     print '<input name="Agregar" type="submit" value="Agregar">';   
@@ -259,11 +277,12 @@ function input_espacioRedes($id,$array){
     print '<input type="hidden" name="id" value='.$id.'>';  
     print '<input type="hidden" name="array" value='.$array.'>';    
     print '</form>';
+    print '<p><img src="../'.$mode1[5].'" alt="Smiley face" height="42" width="42"></p>';
 }
 
 function input_localesAdheridos($id,$array){
   print("<h3> Locales Adheridos</>");
-  include_once '../basededatos/functionsDB.hp';
+  include_once'../basededatos/functionsDB.php';
     $table_name="localesAdheridos";
     $shop = functionsDB::getId($table_name,$id);
     foreach ($shop as $row): array_map('htmlentities', $row);

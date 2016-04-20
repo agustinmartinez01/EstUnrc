@@ -31,7 +31,7 @@ sec_session_start();
     </head>
     <body>
         <?php if (login_check($mysqli) == true) : ?>
-        <p>Welcome <?php echo htmlentities($_SESSION['username']); ?>!</p>
+       
             <p>
               
               <?php
@@ -79,7 +79,7 @@ sec_session_start();
 								 foreach ($shop as $row): array_map('htmlentities', $row);$cantcol=count($row);
 								  print "<tr>
 								    <td><input type='radio' id='id' name='id' value=";
-								    if (isset($row['facultad'])){
+								    if ($table_name=="calendarios"){
 								    	$value=$row['facultad'];
 								    }else{
 								    	$value=$row['id'];
@@ -160,7 +160,7 @@ sec_session_start();
 
 
             </p>
-            <p>Return to <a href="index.php">login page</a></p>
+            
         <?php else : ?>
             <p>
                 <span class="error">You are not authorized to access this page.</span> Please <a href="../index.php">login</a>.

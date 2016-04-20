@@ -34,9 +34,9 @@ sec_session_start();
     <body>
         <?php if (login_check($mysqli) == true) : $mysqli->close();?>
 				<h1 align="center">Menu de Modificaciones EstudianteUNRC</h1>
-        <p>Welcome <?php echo htmlentities($_SESSION['username']); ?>!</p>
+        <p>Bienvenido <?php echo htmlentities($_SESSION['username']); ?>!</p>
         <p>
-        	<p><h2>Return to</h2> <a href="index.php"><h2>login page</h2></a></p>
+        	<p><h2>Volver a</h2> <a href="index.php"><h2>Inicio</h2></a></p>
         
        	   <div class="container">
 

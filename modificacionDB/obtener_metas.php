@@ -181,7 +181,7 @@ function input_espacioRedes(){
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input type="text" name=';
+              print '<input type="text"  style="width:500px" style="height:500px" name=';
               print ($mode[$i]);print "></p>";
               
             }//endfor

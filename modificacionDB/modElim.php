@@ -18,54 +18,55 @@
 	          $id=$_POST['id'];
 	          $tabla=$_POST['table_name'];
 	          $array=$_POST['array'];
+	          $img_path=$_POST['img_path'];
           		switch ($tabla) {
 		              case "actCulturales":
-		                  input_actCulturales($id,$array);
+		                  input_actCulturales($id,$array,$img_path);
 		                  
 		                  break;
 		              case "becas":
-		                  input_becas($id,$array);
+		                  input_becas($id,$array,$img_path);
 		                  
 		                  
 		                  break;
 		              case "actividades":
-		                  input_actividades($id,$array);
+		                  input_actividades($id,$array,$img_path);
 		                  
 		                  break;
 		              case "carnets":
-		                  input_carnets($id,$array);
+		                  input_carnets($id,$array,$img_path);
 		                  
 		                  break;
 		              case "unrcContactos":
-		                  input_unrcContactos($id,$array);
+		                  input_unrcContactos($id,$array,$img_path);
 		                  
 		                  break;
 		              case "contactateMails":
-		                 input_contactateMails($id,$array);
+		                 input_contactateMails($id,$array,$img_path);
 		                  
 		                  break;
 		              case "espacioRedes":
-		                  input_espacioRedes($id,$array);
+		                  input_espacioRedes($id,$img_path);
 		                  
 		                  break;
 		              case "localesAdheridos":
-		                  input_localesAdheridos($id,$array);
+		                  input_localesAdheridos($id,$array,$img_path);
 		                  
 		                  break;
 		              case "calendarios":
-		                  input_calendarios($id,$array);
+		                  input_calendarios($id,$array,$img_path);
 		                  
 		                  break;
 		              case "fb":
-		                  input_noticias($id,$array);
+		                  input_noticias($id,$array,$img_path);
 		                  
 		                  break;
 		              case "contactateconNosotros":
-		                 input_contactateconNosotros($id,$array);
+		                 input_contactateconNosotros($id,$array,$img_path);
 		                  
 		                  break;
 		              case "mapas":
-		                  input_mapas($id,$array);
+		                  input_mapas($id,$array,$img_path);
 		                  
 		                  break;
             	}
