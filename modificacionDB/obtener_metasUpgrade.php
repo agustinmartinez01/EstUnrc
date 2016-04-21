@@ -14,6 +14,13 @@ function input_actCulturales($id,$array)
             $mode1[3] =$row['img_path'];
           endforeach;
     $mode = array("titulo", "fecha", "descripcion", "img_path");
+    print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
     print'<form action="/modificacionDB/modificarDB.php" method="post" enctype="multipart/form-data" >';
       for ($i = 0; $i <3; $i++) {
               print '<label><h6 style="color:black">';
@@ -23,10 +30,10 @@ function input_actCulturales($id,$array)
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print '<textarea name='.$mode[$i].' rows="80" cols="70">';
               print $mode1[$i];
               print '</textarea>';
-              print "></p>";
+              print "</p>";
               print '<input type="hidden" name="img_path" value='.$mode1[3].'>';
               
             }//endfor
@@ -57,6 +64,13 @@ function input_becas($id,$array,$img_path)
             $mode1[2] =$row['img_path'];
           endforeach;
     $mode = array("nombre", "informacion", "img_path");
+    print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
     print'<form action="/modificacionDB/modificarDB.php" method="post" enctype="multipart/form-data" >';
     print '<select name="categoria">';
       print '<option>Provinciales</option>';
@@ -104,6 +118,13 @@ function input_actividades($id,$array,$img_path){
             $mode1[3] =$row['img_path'];
           endforeach;
   $mode = array("titulo", "fecha", "descripcion", "img_path");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
   print'<form action="/modificacionDB/modificarDB.php" method="post" enctype="multipart/form-data" >';
       print '<select name="facultad">';
       print '<option>Humanas</option>';
@@ -153,6 +174,13 @@ function input_carnets($id,$array){
             $mode1[4] =$row['img_path_donde_consigo']; 
           endforeach;
   $mode = array("descr_que_es","descr_como_funciona","descr_donde_consigo","img_path_que_es","img_path_donde_consigo");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
     print'<form action="/modificacionDB/modificarDB.php" method="post" enctype="multipart/form-data" >';
       for ($i = 0; $i <= 2; $i++) {
               print '<label><h6 style="color:black">';
@@ -196,6 +224,13 @@ function input_unrcContactos($id,$array){
             $mode1[3] =$row['mail'];
           endforeach;
   $mode = array("tipo","nombre","telefono","mail");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
   print'<form action="/modificacionDB/modificarDB.php" method="post" >';
     for ($i = 0; $i <= 3; $i++) {
               print '<label><h6 style="color:black">';
@@ -230,6 +265,13 @@ function input_contactateMails($id,$array){
             
           endforeach;
   $mode = array("mail");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
   print'<form action="/modificacionDB/modificarDB.php" method="post" >';
     print '<label><h6 style="color:black">';
     print $mode[$i];
@@ -264,6 +306,13 @@ function input_espacioRedes($id,$img_path){
             $mode1[5] =$row['img_path'];   
           endforeach;
   $mode = array("titulo","descripcion","facebookUrl","twitterUrl","email","img_path");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
     print'<form action="/modificacionDB/modificarDB.php" method="post" enctype="multipart/form-data">';
       for ($i = 0; $i <= 4; $i++) {
               print '<label><h6 style="color:black">';
@@ -303,6 +352,13 @@ function input_localesAdheridos($id,$array){
             $mode1[3] =$row['descuento'];
           endforeach;
   $mode = array("nombre","direccion","rubro","descuento");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
   print'<form action="/modificacionDB/modificarDB.php" method="post"  >';
       for ($i = 0; $i <= 3; $i++) {
               print '<label><h6 style="color:black">';
@@ -312,8 +368,9 @@ function input_localesAdheridos($id,$array){
               print '<label for=';
               print $mode[$i];
               print'></label>';
-              print '<input value="'.$mode1[$i].'" type="text" name=';
-              print ($mode[$i]);print "></p>";
+              print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>'; 
               
             }//endfor
     print '<p></p>'; 
@@ -328,6 +385,13 @@ function input_calendarios($id,$img_path){
   print("<h3> Calendarios Academicos</>");
   print("<h6> Solo para modificar el calendario de una Facultad</>");
   print("<h6> Seleccione la facultad que desea cambiar el calendario</>");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
       print'<form action="/modificacionDB/modificarDB.php" method="post" enctype="multipart/form-data">';
     print '<select name="facultad">';
       print '<option>Humanas</option>';
@@ -355,7 +419,14 @@ function input_noticias($id,$array){
             $mode1[0] =$row['facebook_path'];
           endforeach;
   $i=0;
-  $mode = array("link_face");
+  $mode = array("facebook_path");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
   print'<form action="/modificacionDB/modificarDB.php" method="post" >';
     print '<label><h6 style="color:black">';
     print $mode[$i];
@@ -364,11 +435,12 @@ function input_noticias($id,$array){
     print '<label for=';
     print $mode[$i];
     print'></label>';
-    print '<input value="'.$mode1[$i].'" type="text" name=';
-              print ($mode[$i]);print "></p>";
+    print '<textarea name='.$mode[$i].' rows="8" cols="70">';
+              print $mode1[$i];
+              print '</textarea>'; 
               print '<p></p>'; 
     print '<input name="Agregar" type="submit" value="Agregar">';
-    print '<input type="hidden" name="table_name" value="noticias">';   
+    print '<input type="hidden" name="table_name" value="fb">';   
     print '<input type="hidden" name="id" value='.$id.'>';  
     print '<input type="hidden" name="array" value='.$array.'>';      
     print '</form>'; 
@@ -379,6 +451,13 @@ function input_noticias($id,$array){
 function input_contactateconNosotros($id,$array){
   $i=0;
   $mode = array("mail");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
   print'<form action="/modificacionDB/modificarDB.php" method="post" >';
     print '<label><h6 style="color:black">';
     print $mode[$i];
@@ -401,6 +480,13 @@ function input_contactateconNosotros($id,$array){
 function input_mapas($id,$array){
   $i=0;
   $mode = array("??????");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
   print'<form action="/modificacionDB/modificarDB.php" method="post" >';
     print '<label><h6 style="color:black">';
     print $mode[$i];

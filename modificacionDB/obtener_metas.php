@@ -5,6 +5,13 @@ function input_actCulturales()
 {
     print("<h3> Actividades Culturalles</>");
     $mode = array("titulo", "fecha", "descripcion");
+    print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
     print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data" >';
       for ($i = 0; $i <= 2; $i++) {
               print '<label><h6 style="color:black">';
@@ -33,6 +40,13 @@ function input_actCulturales()
 function imput_unrcContactos(){
   print("<h3>Contactos UNRC</>");
   $mode = array("tipo", "nombre", "telefono", "mail");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
     print'<form action="/modificacionDB/insertarDB.php" method="post" >';
       for ($i = 0; $i <= 3; $i++) {
               print '<label><h6 style="color:black">';
@@ -57,6 +71,13 @@ function input_becas()
 {
     print("<h3> Becas</>");
     $mode = array("nombre", "informacion");
+    print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
     print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data">';
     print '<select name="categoria">';
       print '<option>Provinciales</option>';
@@ -89,6 +110,13 @@ function input_becas()
 function input_actividades(){
   print("<h3> Charlas Viajes y Congresos</>");
 	$mode = array("facultad", "titulo", "fecha", "descripcion");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
 	print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data" >';
       print '<select name="facultad">';
       print '<option>Humanas</option>';
@@ -122,6 +150,13 @@ function input_actividades(){
 function input_carnets(){
   print("<h3> Carnets</>");
 	$mode = array("descr_que_es","descr_como_funciona","descr_donde_consigo");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
     print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data" >';
       for ($i = 0; $i <= 2; $i++) {
               print '<label><h6 style="color:black">';
@@ -149,6 +184,13 @@ function input_carnets(){
 function input_categorias(){
 	$i=0;
 	$mode = array("titulo");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
 	print'<form action="/modificacionDB/insertarDB.php" method="post" >';
     print '<label><h6 style="color:black">';
     print $mode[$i];
@@ -171,6 +213,13 @@ function input_contactateMails(){
   print("<h3> Banco de Ideas</>");
 	$i=0;
 	$mode = array("mail");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
 	print'<form action="/modificacionDB/insertarDB.php" method="post" >';
     print '<label><h6 style="color:black">';
     print $mode[$i];
@@ -190,6 +239,13 @@ function input_contactateMails(){
 function input_espacioRedes(){
   print("<h3> Espacio Independiente</>");
 	$mode = array("titulo","descripcion","facebookUrl","twitterUrl","email","img_path");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
     print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data">';
       for ($i = 0; $i <= 4; $i++) {
               print '<label><h6 style="color:black">';
@@ -216,6 +272,13 @@ function input_espacioRedes(){
 function input_localesAdheridos(){
   print("<h3> Locales Adheridos</>");
 	$mode = array("nombre","direccion","rubro","descuento");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
 	print'<form action="/modificacionDB/insertarDB.php" method="post" >';
       for ($i = 0; $i <= 3; $i++) {
               print '<label><h6 style="color:black">';
@@ -239,6 +302,13 @@ function input_localesAdheridos(){
 function input_calendarios(){
 	$i=0;
 	$mode = array("facultad","img_path");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
   print("<h3> Calendario Academicos</>");
 	print'<form action="/modificacionDB/insertarDB.php" method="post" enctype="multipart/form-data">';
   print '<select name="facultad">';
@@ -260,6 +330,13 @@ function input_noticias(){
 	$i=0;
   print("<h3> Noticias Facebook</>");
 	$mode = array("link_face");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
 	print'<form action="/modificacionDB/insertarDB.php" method="post" ';
     print '<label><h6 style="color:black">';
     print $mode[$i];
@@ -282,6 +359,13 @@ function input_noticias(){
 function input_mapas(){
 	$i=0;
 	$mode = array("??????");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
 	print'<form action="/modificacionDB/insertarDB.php" method="post" >';
     print '<label><h6 style="color:black">';
     print $mode[$i];
@@ -302,6 +386,13 @@ function input_mapas(){
 function input_fb(){
   $i=0;
   $mode = array("facebook_path");
+  print '<style>
+              textarea {
+                  position: relative;
+                  width: 800px;
+                  height: 100px;
+                  border: 3px solid #8AC007;
+              }</style>';
   print'<form action="/modificacionDB/insertarDB.php" method="post" >';
     print '<label><h6 style="color:black">';
     print $mode[$i];

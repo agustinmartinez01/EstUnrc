@@ -454,9 +454,9 @@ function modif_calendarios($facultad,$img_path,$id,$array){
 
 }
 
-function modif_noticias($link_face,$id,$array){
-  $consulta = "UPDATE noticias" .
-            " SET link_face=?" .
+function modif_noticias($link_face,$id){
+  $consulta = "UPDATE fb" .
+            " SET facebook_path=?" .
             "WHERE id=?";
 
         // Preparar la sentencia
@@ -584,9 +584,9 @@ function modif_contactateconNosotros($mail,$id,$array){
                         $facultad=$_POST['facultad'];
                         modif_calendarios($facultad,$img_path);
                         break;
-                    case "noticias":
-                        $link_face=$_POST['link_face'];
-                        modif_noticias($link_face,$id,$array);
+                    case "fb":
+                        $link_face=$_POST['facebook_path'];
+                        modif_noticias($link_face,$id);
                         break;
                     case "contactateconNosotros":
                         $mail=$_POST['mail'];

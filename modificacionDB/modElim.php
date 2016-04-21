@@ -62,7 +62,7 @@
 		                  
 		                  break;
 		              case "fb":
-		                  input_noticias($id,$array,$img_path);
+		                  input_noticias($id,$img_path);
 		                  
 		                  break;
 		              case "contactateconNosotros":
